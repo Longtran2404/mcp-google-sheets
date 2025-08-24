@@ -1,231 +1,179 @@
-# 🔐 Hướng Dẫn Chi Tiết: Lấy Google Service Account Key
+# Google Service Account Setup Guide
 
-## 📋 **Tổng Quan**
-Google Service Account Key là cách xác thực an toàn và đơn giản nhất để MCP Google Sheets Server có thể truy cập Google Sheets của bạn. Hướng dẫn này sẽ đi qua từng bước một cách chi tiết với hình ảnh mô tả.
+## Overview
 
-## 🚀 **Bước 1: Truy Cập Google Cloud Console**
+This guide provides step-by-step instructions for setting up a Google Service Account to use with the MCP Google Sheets Server. A service account allows the server to authenticate with Google APIs without requiring user interaction.
 
-### **1.1 Mở Google Cloud Console**
-- Mở trình duyệt web (Chrome, Firefox, Edge...)
-- Truy cập: [https://console.cloud.google.com/](https://console.cloud.google.com/)
-- Đăng nhập bằng tài khoản Google của bạn
+## Prerequisites
 
-### **1.2 Giao Diện Chính**
-Sau khi đăng nhập, bạn sẽ thấy:
-- **Header**: Thanh trên cùng với tìm kiếm và thông tin tài khoản
-- **Sidebar**: Menu bên trái với các dịch vụ
-- **Main Area**: Khu vực chính hiển thị nội dung
+- A Google account
+- Access to Google Cloud Console
+- Basic understanding of Google Cloud services
 
-## 🆕 **Bước 2: Tạo Project Mới**
+## Step-by-Step Setup
 
-### **2.1 Chọn Project**
-- Ở góc trên bên trái, tìm dropdown "Select a project"
-- Click vào dropdown này
-- Bạn sẽ thấy danh sách các project hiện có
+### Step 1: Access Google Cloud Console
 
-### **2.2 Tạo Project Mới**
-- Click "New Project" (nút màu xanh)
-- Điền thông tin:
-  - **Project name**: `mcp-google-sheets-project` (hoặc tên bạn muốn)
-  - **Project ID**: Sẽ tự động điền dựa trên tên
-  - **Organization**: Để trống (nếu không có)
-- Click "Create"
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Sign in with your Google account
+3. Create a new project or select an existing one
 
-### **2.3 Chờ Tạo Project**
-- Quá trình tạo project mất khoảng 1-2 phút
-- Khi hoàn thành, bạn sẽ được chuyển đến project mới
+### Step 2: Enable Required APIs
 
-## 🔌 **Bước 3: Bật Google Sheets API**
+1. In the Google Cloud Console, navigate to **APIs & Services** > **Library**
+2. Search for and enable the following APIs:
+   - **Google Sheets API**
+   - **Google Drive API** (for advanced features)
 
-### **3.1 Mở API Library**
-- Trong sidebar bên trái, tìm "APIs & Services"
-- Click vào "APIs & Services" > "Library"
+### Step 3: Create a Service Account
 
-### **3.2 Tìm Google Sheets API**
-- Trong ô tìm kiếm, gõ: `Google Sheets API`
-- Click vào kết quả "Google Sheets API"
+1. Go to **APIs & Services** > **Credentials**
+2. Click **Create Credentials** > **Service Account**
+3. Fill in the service account details:
+   - **Service account name**: `mcp-google-sheets`
+   - **Service account ID**: Will be auto-generated
+   - **Description**: `Service account for MCP Google Sheets Server`
+4. Click **Create and Continue**
 
-### **3.3 Bật API**
-- Trang chi tiết API sẽ hiển thị
-- Click nút "Enable" (màu xanh)
-- Đợi quá trình bật API hoàn thành
+### Step 4: Grant Permissions
 
-## 👤 **Bước 4: Tạo Service Account**
+1. In the **Grant this service account access to project** section:
+   - **Role**: Select **Editor** (or create a custom role with minimal permissions)
+2. Click **Continue**
+3. Click **Done**
 
-### **4.1 Mở Credentials**
-- Trong sidebar, click "APIs & Services" > "Credentials"
-- Bạn sẽ thấy trang quản lý credentials
+### Step 5: Create and Download the Key
 
-### **4.2 Tạo Service Account**
-- Click "Create Credentials" (nút màu xanh)
-- Chọn "Service Account" từ dropdown
+1. In the **Credentials** page, find your service account
+2. Click on the service account email
+3. Go to the **Keys** tab
+4. Click **Add Key** > **Create new key**
+5. Select **JSON** format
+6. Click **Create**
+7. The JSON key file will be downloaded automatically
 
-### **4.3 Điền Thông Tin Service Account**
-- **Service account name**: `mcp-google-sheets-sa`
-- **Service account ID**: Sẽ tự động điền
-- **Description**: `Service account for MCP Google Sheets server`
-- Click "Create and Continue"
+### Step 6: Share Google Sheets
 
-## 🔑 **Bước 5: Cấp Quyền Cho Service Account**
+1. Open the Google Sheets you want to access
+2. Click **Share** button
+3. Add your service account email (found in the JSON file under `client_email`)
+4. Grant **Editor** permissions
+5. Click **Send**
 
-### **5.1 Chọn Role**
-- Ở phần "Grant this service account access to project":
-- **Role**: Chọn "Editor" (nếu cần đọc/ghi) hoặc "Viewer" (chỉ đọc)
-- **Editor**: Có thể đọc, ghi, tạo, xóa
-- **Viewer**: Chỉ có thể đọc
+## Configuration
 
-### **5.2 Hoàn Tất**
-- Click "Continue"
-- Click "Done"
+### Using the Service Account Key
 
-## 📄 **Bước 6: Tạo Và Tải Key JSON**
+1. Open the downloaded JSON file
+2. Copy the entire content
+3. In your `mcp.json` file, set the `GOOGLE_SERVICE_ACCOUNT_KEY` environment variable:
 
-### **6.1 Mở Service Account**
-- Trong danh sách Service Accounts, tìm email vừa tạo
-- Click vào email để mở chi tiết
-
-### **6.2 Tạo Key**
-- Chuyển sang tab "Keys"
-- Click "Add Key" > "Create new key"
-- Chọn "JSON"
-- Click "Create"
-
-### **6.3 Tải File JSON**
-- File JSON sẽ tự động tải về máy
-- **Lưu ý**: Đây là file quan trọng, giữ an toàn!
-
-## 📁 **Bước 7: Cấp Quyền Truy Cập Google Sheets**
-
-### **7.1 Mở Google Sheets**
-- Mở Google Sheets mà bạn muốn truy cập
-- Hoặc tạo Google Sheets mới
-
-### **7.2 Chia Sẻ Với Service Account**
-- Click nút "Share" (góc trên bên phải)
-- Trong ô "Add people and groups":
-  - Nhập email service account: `mcp-google-sheets-sa@project-id.iam.gserviceaccount.com`
-  - Thay `project-id` bằng Project ID thực tế
-- **Role**: Chọn "Editor" hoặc "Viewer"
-- **Notify people**: Bỏ tích (không cần)
-- Click "Send"
-
-## ⚙️ **Bước 8: Sử Dụng Trong MCP Server**
-
-### **8.1 Mở File Cấu Hình**
-- Mở file: `~/.cursor/mcp.json`
-- Trên Windows: `C:\Users\YourUsername\.cursor\mcp.json`
-
-### **8.2 Thêm Cấu Hình MCP**
 ```json
 {
   "mcpServers": {
     "mcp-google-sheets": {
       "command": "npx",
-      "args": ["mcp-google-sheets"],
+      "args": ["mcp-google-sheets-server"],
       "env": {
-        "GOOGLE_SERVICE_ACCOUNT_KEY": "{\"type\":\"service_account\",\"project_id\":\"your-project-id\",\"private_key_id\":\"...\",\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----\\n\",\"client_email\":\"...\",\"client_id\":\"...\",\"auth_uri\":\"https://accounts.google.com/o/oauth2/auth\",\"token_uri\":\"https://oauth2.googleapis.com/token\",\"auth_provider_x509_cert_url\":\"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\":\"https://www.googleapis.com/robot/v1/metadata/x509/...\"}"
+        "GOOGLE_SERVICE_ACCOUNT_KEY": "{\"type\":\"service_account\",\"project_id\":\"your-project-id\",...}"
       }
     }
   }
 }
 ```
 
-### **8.3 Thay Thế Thông Tin**
-- **`your-project-id`**: Thay bằng Project ID thực tế
-- **`...`**: Thay bằng nội dung thực tế từ file JSON
+**Important**: Make sure to properly escape the JSON string in your configuration file.
 
-## ⚠️ **Lưu Ý Quan Trọng**
+## Security Best Practices
 
-### **Bảo Mật**
-- **KHÔNG BAO GIỜ** chia sẻ file JSON service account
-- **KHÔNG BAO GIỜ** commit file JSON vào Git
-- File JSON chứa private key, rất nhạy cảm!
+### Key Management
 
-### **Escape JSON**
-Khi copy JSON vào mcp.json, cần escape:
-- `"` → `\"`
-- `\n` → `\\n`
-- `\` → `\\`
+- **Never commit** the service account key to version control
+- **Store keys securely** using environment variables or secure key management systems
+- **Rotate keys regularly** for production environments
+- **Use minimal permissions** - only grant the necessary access
 
-### **Quyền Truy Cập**
-- Service account cần được share với Google Sheets
-- Kiểm tra quyền trong Google Drive
-- Đảm bảo API đã được bật
+### Access Control
 
-## 🔧 **Troubleshooting**
+- **Limit sharing** to only the specific Google Sheets needed
+- **Monitor usage** through Google Cloud Console
+- **Review permissions** regularly
 
-### **Lỗi "GOOGLE_SERVICE_ACCOUNT_KEY not found"**
-- Kiểm tra biến môi trường trong mcp.json
-- Đảm bảo JSON được escape đúng cách
-- Kiểm tra cú pháp JSON
+## Troubleshooting
 
-### **Lỗi "Permission denied"**
-- Kiểm tra quyền truy cập của service account
-- Đảm bảo đã share Google Sheets
-- Kiểm tra role của service account
+### Common Issues
 
-### **Lỗi "Invalid credentials"**
-- Kiểm tra file JSON service account
-- Đảm bảo Google Sheets API đã được bật
-- Kiểm tra Project ID có đúng không
+#### "Permission denied" Error
 
-### **Lỗi "API not enabled"**
-- Vào Google Cloud Console
-- Bật Google Sheets API
-- Đợi vài phút để API hoạt động
+- Ensure the service account has access to the Google Sheets
+- Check that the Google Sheets are shared with the service account email
+- Verify the service account has the correct role
 
-## 📚 **Ví Dụ Thực Tế**
+#### "Invalid credentials" Error
 
-### **File JSON Service Account (ví dụ)**
-```json
-{
-  "type": "service_account",
-  "project_id": "my-mcp-project-123",
-  "private_key_id": "abc123def456",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC...\n-----END PRIVATE KEY-----\n",
-  "client_email": "mcp-google-sheets-sa@my-mcp-project-123.iam.gserviceaccount.com",
-  "client_id": "123456789",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mcp-google-sheets-sa%40my-mcp-project-123.iam.gserviceaccount.com"
-}
+- Verify the JSON key is correctly copied
+- Check that the key hasn't expired
+- Ensure the service account is still active
+
+#### "API not enabled" Error
+
+- Verify that Google Sheets API is enabled
+- Check that Google Drive API is enabled (if using advanced features)
+
+### Getting Help
+
+If you encounter issues:
+
+1. Check the [Google Cloud documentation](https://cloud.google.com/docs)
+2. Review the [Google Sheets API documentation](https://developers.google.com/sheets/api)
+3. Create an issue in the [GitHub repository](https://github.com/Longtran2404/mcp-google-sheets/issues)
+4. Contact support at: **tranminhlong2404@gmail.com**
+
+## Advanced Configuration
+
+### Custom Roles
+
+For production environments, consider creating custom roles with minimal permissions:
+
+1. Go to **IAM & Admin** > **Roles**
+2. Click **Create Role**
+3. Add only the necessary permissions:
+   - `sheets.spreadsheets.read`
+   - `sheets.spreadsheets.write`
+   - `drive.files.read` (if using Drive features)
+
+### Environment Variables
+
+Instead of hardcoding the key in `mcp.json`, use environment variables:
+
+```bash
+export GOOGLE_SERVICE_ACCOUNT_KEY='{"type":"service_account",...}'
 ```
 
-### **MCP Config Tương Ứng**
+Then reference it in your configuration:
+
 ```json
 {
   "mcpServers": {
     "mcp-google-sheets": {
       "command": "npx",
-      "args": ["mcp-google-sheets"],
+      "args": ["mcp-google-sheets-server"],
       "env": {
-        "GOOGLE_SERVICE_ACCOUNT_KEY": "{\"type\":\"service_account\",\"project_id\":\"my-mcp-project-123\",\"private_key_id\":\"abc123def456\",\"private_key\":\"-----BEGIN PRIVATE KEY-----\\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC...\\n-----END PRIVATE KEY-----\\n\",\"client_email\":\"mcp-google-sheets-sa@my-mcp-project-123.iam.gserviceaccount.com\",\"client_id\":\"123456789\",\"auth_uri\":\"https://accounts.google.com/o/oauth2/auth\",\"token_uri\":\"https://oauth2.googleapis.com/token\",\"auth_provider_x509_cert_url\":\"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\":\"https://www.googleapis.com/robot/v1/metadata/x509/mcp-google-sheets-sa%40my-mcp-project-123.iam.gserviceaccount.com\"}"
+        "GOOGLE_SERVICE_ACCOUNT_KEY": "${GOOGLE_SERVICE_ACCOUNT_KEY}"
       }
     }
   }
 }
 ```
 
-## 🎯 **Kết Luận**
+## Support
 
-Sau khi hoàn thành tất cả các bước trên:
-1. ✅ Google Cloud Project đã được tạo
-2. ✅ Google Sheets API đã được bật
-3. ✅ Service Account đã được tạo
-4. ✅ Key JSON đã được tải về
-5. ✅ Google Sheets đã được share
-6. ✅ MCP config đã được cập nhật
+For additional support or questions:
 
-Bây giờ bạn có thể sử dụng MCP Google Sheets Server trong Cursor!
-
-## 🆘 **Hỗ Trợ Thêm**
-
-Nếu gặp vấn đề:
-- 📧 Email: longtran2404@gmail.com
-- 🐛 GitHub Issues: [https://github.com/Longtran2404/mcp-google-sheets/issues](https://github.com/Longtran2404/mcp-google-sheets/issues)
-- 📖 Documentation: [https://github.com/Longtran2404/mcp-google-sheets](https://github.com/Longtran2404/mcp-google-sheets)
+- **Email**: tranminhlong2404@gmail.com
+- **GitHub Issues**: [Create an issue](https://github.com/Longtran2404/mcp-google-sheets/issues)
+- **Documentation**: [GitHub README](https://github.com/Longtran2404/mcp-google-sheets#readme)
 
 ---
 
-**Chúc bạn thành công! 🚀**
+**Note**: This setup guide is specifically designed for the MCP Google Sheets Server. For other use cases, refer to the official Google Cloud documentation.

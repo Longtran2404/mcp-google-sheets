@@ -24,16 +24,19 @@
 ## 🚀 Quick Installation
 
 ### **Method 1: Install from npm (Recommended)**
+
 ```bash
 npm install -g mcp-google-sheets-server
 ```
 
 ### **Method 2: Local installation**
+
 ```bash
 npm install mcp-google-sheets-server
 ```
 
 ### **Method 3: Use npx (No installation needed)**
+
 ```bash
 npx mcp-google-sheets-server
 ```
@@ -43,9 +46,11 @@ npx mcp-google-sheets-server
 ## 🔐 Google Service Account Authentication
 
 ### **Detailed Guide**
+
 See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-by-step instructions on how to get Google Service Account Key.
 
 ### **Quick Configuration**
+
 ```json
 {
   "mcpServers": {
@@ -65,6 +70,7 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 ## 📋 **Complete Tool Collection (40+ Tools!)**
 
 ### **🔧 Basic Operations**
+
 | Tool                     | Description                      | Parameters                                                            |
 | ------------------------ | -------------------------------- | --------------------------------------------------------------------- |
 | **`sheets_get_data`**    | Get data with formatting options | `spreadsheetId`, `range`, `valueRenderOption`, `dateTimeRenderOption` |
@@ -72,6 +78,7 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 | **`sheets_create`**      | Create spreadsheet with theme    | `title`, `initialData`, `theme`                                       |
 
 ### **🎨 Advanced Formatting**
+
 | Tool                                | Description                   | Parameters                                                                                                     |
 | ----------------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | **`sheets_format_cells`**           | Apply professional formatting | `spreadsheetId`, `range`, `backgroundColor`, `textColor`, `fontSize`, `bold`, `italic`, `alignment`, `borders` |
@@ -79,36 +86,40 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 | **`sheets_merge_cells`**            | Merge cells with options      | `spreadsheetId`, `range`, `mergeType`                                                                          |
 
 ### **📈 Enhanced Charts & Visualization**
-| Tool                              | Description                    | Parameters                                                                     |
-| --------------------------------- | ------------------------------ | ------------------------------------------------------------------------------ |
-| **`sheets_create_chart`**         | Create basic charts            | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position`                |
-| **`sheets_create_chart_with_data`** | Create charts with data      | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position`, `chartOptions` |
-| **`sheets_create_chart_from_table`** | Create charts from tables   | `spreadsheetId`, `chartType`, `tableRange`, `title`, `useFirstRowAsLabels`     |
-| **`sheets_update_chart`**         | Update existing charts         | `spreadsheetId`, `chartId`, `title`, `dataRange`                               |
-| **`sheets_update_chart_data`**    | Update chart data              | `spreadsheetId`, `chartId`, `newDataRange`, `updateTitle`                      |
-| **`sheets_delete_chart`**         | Delete charts                  | `spreadsheetId`, `chartId`                                                      |
-| **`sheets_list_charts`**          | List all charts                | `spreadsheetId`                                                                 |
+
+| Tool                                 | Description               | Parameters                                                                     |
+| ------------------------------------ | ------------------------- | ------------------------------------------------------------------------------ |
+| **`sheets_create_chart`**            | Create basic charts       | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position`                 |
+| **`sheets_create_chart_with_data`**  | Create charts with data   | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position`, `chartOptions` |
+| **`sheets_create_chart_from_table`** | Create charts from tables | `spreadsheetId`, `chartType`, `tableRange`, `title`, `useFirstRowAsLabels`     |
+| **`sheets_update_chart`**            | Update existing charts    | `spreadsheetId`, `chartId`, `title`, `dataRange`                               |
+| **`sheets_update_chart_data`**       | Update chart data         | `spreadsheetId`, `chartId`, `newDataRange`, `updateTitle`                      |
+| **`sheets_delete_chart`**            | Delete charts             | `spreadsheetId`, `chartId`                                                     |
+| **`sheets_list_charts`**             | List all charts           | `spreadsheetId`                                                                |
 
 ### **📋 Complete Sheet Management**
-| Tool                        | Description                    | Parameters                                           |
-| --------------------------- | ------------------------------ | ---------------------------------------------------- |
-| **`sheets_create_sheet`**   | Create new sheets              | `spreadsheetId`, `title`, `index`                   |
-| **`sheets_duplicate_sheet`** | Duplicate existing sheets      | `spreadsheetId`, `sheetId`, `newTitle`              |
-| **`sheets_delete_sheet`**   | Delete sheets                  | `spreadsheetId`, `sheetId`                          |
-| **`sheets_rename_sheet`**   | Rename sheets                  | `spreadsheetId`, `sheetId`, `newTitle`              |
-| **`sheets_hide_sheet`**     | Hide sheets from view          | `spreadsheetId`, `sheetId`                          |
-| **`sheets_show_sheet`**     | Show hidden sheets             | `spreadsheetId`, `sheetId`                          |
-| **`sheets_move_sheet`**     | Move sheets to new position    | `spreadsheetId`, `sheetId`, `newIndex`              |
-| **`sheets_get_sheet_info`** | Get all sheet information      | `spreadsheetId`, `includeGridData`                  |
-| **`sheets_get_sheet_properties`** | Get specific sheet properties | `spreadsheetId`, `sheetId`                          |
+
+| Tool                              | Description                   | Parameters                             |
+| --------------------------------- | ----------------------------- | -------------------------------------- |
+| **`sheets_create_sheet`**         | Create new sheets             | `spreadsheetId`, `title`, `index`      |
+| **`sheets_duplicate_sheet`**      | Duplicate existing sheets     | `spreadsheetId`, `sheetId`, `newTitle` |
+| **`sheets_delete_sheet`**         | Delete sheets                 | `spreadsheetId`, `sheetId`             |
+| **`sheets_rename_sheet`**         | Rename sheets                 | `spreadsheetId`, `sheetId`, `newTitle` |
+| **`sheets_hide_sheet`**           | Hide sheets from view         | `spreadsheetId`, `sheetId`             |
+| **`sheets_show_sheet`**           | Show hidden sheets            | `spreadsheetId`, `sheetId`             |
+| **`sheets_move_sheet`**           | Move sheets to new position   | `spreadsheetId`, `sheetId`, `newIndex` |
+| **`sheets_get_sheet_info`**       | Get all sheet information     | `spreadsheetId`, `includeGridData`     |
+| **`sheets_get_sheet_properties`** | Get specific sheet properties | `spreadsheetId`, `sheetId`             |
 
 ### **🔒 Data Validation & Protection**
+
 | Tool                             | Description                 | Parameters                                                |
 | -------------------------------- | --------------------------- | --------------------------------------------------------- |
 | **`sheets_set_data_validation`** | Set validation rules        | `spreadsheetId`, `range`, `ruleType`, `values`, `message` |
 | **`sheets_protect_range`**       | Protect ranges from editing | `spreadsheetId`, `range`, `description`, `warningOnly`    |
 
 ### **📊 Advanced Data Operations**
+
 | Tool                        | Description                  | Parameters                                           |
 | --------------------------- | ---------------------------- | ---------------------------------------------------- |
 | **`sheets_insert_rows`**    | Insert rows at position      | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
@@ -117,18 +128,21 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 | **`sheets_delete_columns`** | Delete columns from position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
 
 ### **📐 Formula & Calculation**
+
 | Tool                           | Description               | Parameters                           |
 | ------------------------------ | ------------------------- | ------------------------------------ |
 | **`sheets_set_formula`**       | Set formulas in cells     | `spreadsheetId`, `range`, `formulas` |
 | **`sheets_calculate_formula`** | Calculate formula results | `spreadsheetId`, `formula`           |
 
 ### **⚡ Batch Operations**
+
 | Tool                      | Description                        | Parameters                                     |
 | ------------------------- | ---------------------------------- | ---------------------------------------------- |
 | **`sheets_batch_update`** | Multiple operations in one request | `spreadsheetId`, `requests`                    |
 | **`sheets_batch_get`**    | Get data from multiple ranges      | `spreadsheetId`, `ranges`, `valueRenderOption` |
 
 ### **🔍 Search & Sharing**
+
 | Tool                      | Description                | Parameters                                  |
 | ------------------------- | -------------------------- | ------------------------------------------- |
 | **`sheets_search`**       | Search spreadsheets        | `query`, `maxResults`                       |
@@ -136,6 +150,7 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 | **`sheets_get_metadata`** | Get comprehensive metadata | `spreadsheetId`, `includeGridData`          |
 
 ### **🧹 Utility Operations**
+
 | Tool                     | Description                      | Parameters                                             |
 | ------------------------ | -------------------------------- | ------------------------------------------------------ |
 | **`sheets_clear_range`** | Clear content and formatting     | `spreadsheetId`, `range`                               |
@@ -146,6 +161,7 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 ## 🛠️ Advanced Setup Examples
 
 ### **Create Professional Spreadsheet with Multiple Sheets**
+
 ```json
 {
   "mcpServers": {
@@ -165,6 +181,7 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 ## 📚 **Advanced Usage Examples**
 
 ### **Complete Sheet Management Workflow**
+
 ```typescript
 // 1. Create spreadsheet
 const spreadsheet = await mcp.callTool("sheets_create", {
@@ -230,6 +247,7 @@ await mcp.callTool("sheets_hide_sheet", {
 ```
 
 ### **Advanced Chart Management**
+
 ```typescript
 // Create chart with custom options
 await mcp.callTool("sheets_create_chart_with_data", {
@@ -264,6 +282,7 @@ await mcp.callTool("sheets_delete_chart", {
 ```
 
 ### **Sheet Information and Properties**
+
 ```typescript
 // Get information about all sheets
 const sheetInfo = await mcp.callTool("sheets_get_sheet_info", {
