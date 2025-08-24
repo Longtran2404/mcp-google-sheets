@@ -1,19 +1,31 @@
-MCP Google Sheets Server
-========================
+MCP Google Sheets Server v2.0.0
+==============================
 
-Simple and lightweight MCP Server for Google Sheets - Install directly from npm, just input JSON credentials and use immediately!
+Advanced MCP Server for Google Sheets - Install directly from npm, access powerful Google Sheets features with AI assistance!
+
+NEW IN V2.0.0 - ADVANCED FEATURES
+----------------------------------
+
+- Enhanced Data Operations - Advanced formatting, conditional formatting, data validation
+- Chart & Visualization - Create and manage charts (Column, Line, Pie, Bar, Area, Scatter)
+- Data Protection - Protect ranges, set validation rules, control access
+- Sheet Management - Create, duplicate, delete sheets with advanced options
+- Batch Operations - Perform multiple operations in single requests for better performance
+- Professional Formatting - Colors, fonts, borders, alignment, merge cells
+- Formula Support - Set formulas, calculate results, advanced calculations
+- Performance Optimized - Batch operations, efficient API usage
 
 FEATURES
 --------
 
-* Read data from Google Sheets
-* Update data in Google Sheets
-* Create new spreadsheets
-* Search spreadsheets
-* Share spreadsheets
-* Get spreadsheet metadata
-* Simple installation - just npm install
-* Easy authentication with Service Account
+- Read data from Google Sheets with formatting options
+- Update data in Google Sheets with input options
+- Create new spreadsheets with themes and initial data
+- Search spreadsheets by name or content
+- Share spreadsheets with specific permissions
+- Get comprehensive spreadsheet metadata
+- Simple installation - just npm install
+- Easy authentication with Service Account
 
 QUICK INSTALLATION
 ------------------
@@ -46,96 +58,82 @@ Quick Configuration
   }
 }
 
-AVAILABLE TOOLS
----------------
+COMPLETE TOOL COLLECTION (30+ TOOLS!)
+-------------------------------------
 
-1. sheets_get_data
-   Description: Get data from Google Sheets
-   Parameters: spreadsheetId, range
-   Example: sheets_get_data("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", "A1:C10")
+Basic Operations
+- sheets_get_data - Get data with formatting options
+- sheets_update_data - Update data with input options
+- sheets_create - Create spreadsheet with theme
 
-2. sheets_update_data
-   Description: Update data in Google Sheets
-   Parameters: spreadsheetId, range, values
-   Example: sheets_update_data("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", "A1", [["Hello", "World"]])
+Advanced Formatting
+- sheets_format_cells - Apply professional formatting
+- sheets_conditional_formatting - Set conditional rules
+- sheets_merge_cells - Merge cells with options
 
-3. sheets_create
-   Description: Create new Google Sheets
-   Parameters: title
-   Example: sheets_create("My New Spreadsheet")
+Charts & Visualization
+- sheets_create_chart - Create professional charts
+- sheets_update_chart - Update existing charts
 
-4. sheets_search
-   Description: Search Google Sheets
-   Parameters: query
-   Example: sheets_search("budget 2024")
+Data Validation & Protection
+- sheets_set_data_validation - Set validation rules
+- sheets_protect_range - Protect ranges from editing
 
-5. sheets_share
-   Description: Share Google Sheets
-   Parameters: spreadsheetId, email, role
-   Example: sheets_share("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", "user@example.com", "writer")
+Advanced Data Operations
+- sheets_insert_rows - Insert rows at position
+- sheets_insert_columns - Insert columns at position
+- sheets_delete_rows - Delete rows from position
+- sheets_delete_columns - Delete columns from position
 
-6. sheets_get_metadata
-   Description: Get Google Sheets metadata
-   Parameters: spreadsheetId
-   Example: sheets_get_metadata("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms")
+Formula & Calculation
+- sheets_set_formula - Set formulas in cells
+- sheets_calculate_formula - Calculate formula results
 
-ADVANCED SETUP
---------------
+Sheet Management
+- sheets_create_sheet - Create new sheets
+- sheets_duplicate_sheet - Duplicate existing sheets
+- sheets_delete_sheet - Delete sheets
 
-Method 1: Use npx (Recommended)
+Batch Operations
+- sheets_batch_update - Multiple operations in one request
+- sheets_batch_get - Get data from multiple ranges
 
-1. Update ~/.cursor/mcp.json:
-   {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "npx",
-         "args": ["mcp-google-sheets-server"],
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
-   }
+Search & Sharing
+- sheets_search - Search spreadsheets
+- sheets_share - Share with permissions
+- sheets_get_metadata - Get comprehensive metadata
 
-2. Restart Cursor
+Utility Operations
+- sheets_clear_range - Clear content and formatting
+- sheets_copy_to - Copy sheets between spreadsheets
 
-Method 2: Global installation
+ADVANCED USAGE EXAMPLES
+-----------------------
 
-1. Install package:
-   npm install -g mcp-google-sheets-server
+Create Formatted Table with Charts
+1. Create spreadsheet
+2. Add data
+3. Apply formatting
+4. Create chart
 
-2. Update ~/.cursor/mcp.json:
-   {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "mcp-google-sheets-server",
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
-   }
+Batch Operations for Performance
+Perform multiple operations in one request for better performance
 
-Method 3: Local installation
+ADVANCED SETUP EXAMPLES
+------------------------
 
-1. Clone and build:
-   git clone https://github.com/Longtran2404/mcp-google-sheets.git
-   cd mcp-google-sheets
-   npm install
-   npm run build
-
-2. Update ~/.cursor/mcp.json:
-   {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "node",
-         "args": ["/path/to/mcp-google-sheets/dist/index.js"],
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
-   }
+Create Professional Spreadsheet with Formatting
+{
+  "mcpServers": {
+    "mcp-google-sheets": {
+      "command": "npx",
+      "args": ["mcp-google-sheets-server"],
+      "env": {
+        "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
+      }
+    }
+  }
+}
 
 TROUBLESHOOTING
 ---------------
@@ -154,33 +152,17 @@ Common errors:
    - Check service account JSON file
    - Ensure Google Sheets API is enabled
 
-USAGE EXAMPLES
---------------
-
-In Cursor with MCP:
-
-// Get data from Google Sheets
-const data = await mcp.callTool('sheets_get_data', {
-  spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-  range: 'A1:C10'
-});
-
-// Update data
-await mcp.callTool('sheets_update_data', {
-  spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-  range: 'A1',
-  values: [['New Data', 'Updated']]
-});
-
 ADVANTAGES OVER OTHER SOLUTIONS
 -------------------------------
 
-* Easy installation: npm install mcp-google-sheets-server
-* No build needed: Automatically builds when publishing
-* Built-in integration: Works immediately with Cursor MCP
-* Light and fast: Only needs credentials, no complex setup
-* Full support: All basic Google Sheets API functionality
-* TypeScript: Safe code and easy to maintain
+- 30+ Advanced Tools - Most comprehensive Google Sheets MCP server
+- Professional Formatting - Colors, fonts, borders, conditional formatting
+- Chart Creation - 6 chart types with customization options
+- Data Validation - Set rules and protect sensitive data
+- Batch Operations - High-performance multiple operations
+- Sheet Management - Full control over sheets and structure
+- Formula Support - Advanced calculations and automation
+- Performance Optimized - Efficient API usage and batch processing
 
 LICENSE
 -------
@@ -208,3 +190,5 @@ If you encounter issues:
 3. Describe the problem in detail and how to reproduce it
 
 If this project is helpful, please give it a star!
+
+Now with 30+ Advanced Google Sheets Tools!

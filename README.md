@@ -1,6 +1,6 @@
-# 🚀 MCP Google Sheets Server
+# 🚀 MCP Google Sheets Server v2.0.0
 
-> **Simple and lightweight MCP Server for Google Sheets** - Install directly from npm, just input JSON credentials and use immediately!
+> **Advanced MCP Server for Google Sheets** - Install directly from npm, access powerful Google Sheets features with AI assistance!
 
 [![npm version](https://img.shields.io/npm/v/mcp-google-sheets-server.svg)](https://www.npmjs.com/package/mcp-google-sheets-server)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-google-sheets-server.svg)](https://www.npmjs.com/package/mcp-google-sheets-server)
@@ -9,16 +9,16 @@
 
 ---
 
-## ✨ Features
+## ✨ **NEW in v2.0.0 - Advanced Features!**
 
-- 📊 **Read data** from Google Sheets
-- ✏️ **Update data** in Google Sheets  
-- 🆕 **Create new spreadsheets**
-- 🔍 **Search spreadsheets**
-- 👥 **Share spreadsheets**
-- 📋 **Get spreadsheet metadata**
-- 🚀 **Simple installation** - just npm install
-- 🔐 **Easy authentication** with Service Account
+- 📊 **Enhanced Data Operations** - Advanced formatting, conditional formatting, data validation
+- 📈 **Chart & Visualization** - Create and manage charts (Column, Line, Pie, Bar, Area, Scatter)
+- 🔒 **Data Protection** - Protect ranges, set validation rules, control access
+- 📋 **Sheet Management** - Create, duplicate, delete sheets with advanced options
+- ⚡ **Batch Operations** - Perform multiple operations in single requests for better performance
+- 🎨 **Professional Formatting** - Colors, fonts, borders, alignment, merge cells
+- 📐 **Formula Support** - Set formulas, calculate results, advanced calculations
+- 🚀 **Performance Optimized** - Batch operations, efficient API usage
 
 ---
 
@@ -63,85 +63,160 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 
 ---
 
-## 📋 Available Tools
+## 📋 **Complete Tool Collection (30+ Tools!)**
 
-| Tool | Description | Parameters | Example |
-|------|-------------|------------|---------|
-| **`sheets_get_data`** | Get data from Google Sheets | `spreadsheetId`, `range` | `sheets_get_data("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", "A1:C10")` |
-| **`sheets_update_data`** | Update data in Google Sheets | `spreadsheetId`, `range`, `values` | `sheets_update_data("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", "A1", [["Hello", "World"]])` |
-| **`sheets_create`** | Create new Google Sheets | `title` | `sheets_create("My New Spreadsheet")` |
-| **`sheets_search`** | Search Google Sheets | `query` | `sheets_search("budget 2024")` |
-| **`sheets_share`** | Share Google Sheets | `spreadsheetId`, `email`, `role` | `sheets_share("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms", "user@example.com", "writer")` |
-| **`sheets_get_metadata`** | Get Google Sheets metadata | `spreadsheetId` | `sheets_get_metadata("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms")` |
+### **🔧 Basic Operations**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_get_data`** | Get data with formatting options | `spreadsheetId`, `range`, `valueRenderOption`, `dateTimeRenderOption` |
+| **`sheets_update_data`** | Update data with input options | `spreadsheetId`, `range`, `values`, `valueInputOption` |
+| **`sheets_create`** | Create spreadsheet with theme | `title`, `initialData`, `theme` |
+
+### **🎨 Advanced Formatting**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_format_cells`** | Apply professional formatting | `spreadsheetId`, `range`, `backgroundColor`, `textColor`, `fontSize`, `bold`, `italic`, `alignment`, `borders` |
+| **`sheets_conditional_formatting`** | Set conditional rules | `spreadsheetId`, `range`, `ruleType`, `value`, `colors` |
+| **`sheets_merge_cells`** | Merge cells with options | `spreadsheetId`, `range`, `mergeType` |
+
+### **📈 Charts & Visualization**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_create_chart`** | Create professional charts | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position` |
+| **`sheets_update_chart`** | Update existing charts | `spreadsheetId`, `chartId`, `title`, `dataRange` |
+
+### **🔒 Data Validation & Protection**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_set_data_validation`** | Set validation rules | `spreadsheetId`, `range`, `ruleType`, `values`, `message` |
+| **`sheets_protect_range`** | Protect ranges from editing | `spreadsheetId`, `range`, `description`, `warningOnly` |
+
+### **📊 Advanced Data Operations**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_insert_rows`** | Insert rows at position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+| **`sheets_insert_columns`** | Insert columns at position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+| **`sheets_delete_rows`** | Delete rows from position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+| **`sheets_delete_columns`** | Delete columns from position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+
+### **📐 Formula & Calculation**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_set_formula`** | Set formulas in cells | `spreadsheetId`, `range`, `formulas` |
+| **`sheets_calculate_formula`** | Calculate formula results | `spreadsheetId`, `formula` |
+
+### **📋 Sheet Management**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_create_sheet`** | Create new sheets | `spreadsheetId`, `title`, `index` |
+| **`sheets_duplicate_sheet`** | Duplicate existing sheets | `spreadsheetId`, `sheetId`, `newTitle` |
+| **`sheets_delete_sheet`** | Delete sheets | `spreadsheetId`, `sheetId` |
+
+### **⚡ Batch Operations**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_batch_update`** | Multiple operations in one request | `spreadsheetId`, `requests` |
+| **`sheets_batch_get`** | Get data from multiple ranges | `spreadsheetId`, `ranges`, `valueRenderOption` |
+
+### **🔍 Search & Sharing**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_search`** | Search spreadsheets | `query`, `maxResults` |
+| **`sheets_share`** | Share with permissions | `spreadsheetId`, `email`, `role`, `message` |
+| **`sheets_get_metadata`** | Get comprehensive metadata | `spreadsheetId`, `includeGridData` |
+
+### **🧹 Utility Operations**
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| **`sheets_clear_range`** | Clear content and formatting | `spreadsheetId`, `range` |
+| **`sheets_copy_to`** | Copy sheets between spreadsheets | `spreadsheetId`, `sheetId`, `destinationSpreadsheetId` |
 
 ---
 
-## 🛠️ Advanced Setup
+## 🛠️ Advanced Setup Examples
 
-### **Method 1: Use npx (Recommended)**
+### **Create Professional Spreadsheet with Formatting**
+```json
+{
+  "mcpServers": {
+    "mcp-google-sheets": {
+      "command": "npx",
+      "args": ["mcp-google-sheets-server"],
+      "env": {
+        "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
+      }
+    }
+  }
+}
+```
 
-1. **Update `~/.cursor/mcp.json`:**
-   ```json
-   {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "npx",
-         "args": ["mcp-google-sheets-server"],
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
-   }
-   ```
+---
 
-2. **Restart Cursor**
+## 📚 **Advanced Usage Examples**
 
-### **Method 2: Global installation**
+### **Create Formatted Table with Charts**
+```typescript
+// 1. Create spreadsheet
+const spreadsheet = await mcp.callTool('sheets_create', {
+  title: 'Sales Report 2024',
+  theme: 'LIGHT'
+});
 
-1. **Install package:**
-   ```bash
-   npm install -g mcp-google-sheets-server
-   ```
+// 2. Add data
+await mcp.callTool('sheets_update_data', {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  range: 'A1:D5',
+  values: [
+    ['Month', 'Sales', 'Expenses', 'Profit'],
+    ['January', 10000, 6000, 4000],
+    ['February', 12000, 7000, 5000],
+    ['March', 15000, 8000, 7000],
+    ['April', 18000, 9000, 9000]
+  ]
+});
 
-2. **Update `~/.cursor/mcp.json`:**
-   ```json
-   {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "mcp-google-sheets-server",
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
-   }
-   ```
+// 3. Apply formatting
+await mcp.callTool('sheets_format_cells', {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  range: 'A1:D1',
+  backgroundColor: { red: 0.2, green: 0.6, blue: 0.9, alpha: 1 },
+  textColor: { red: 1, green: 1, blue: 1, alpha: 1 },
+  bold: true,
+  fontSize: 14,
+  horizontalAlignment: 'CENTER'
+});
 
-### **Method 3: Local installation**
+// 4. Create chart
+await mcp.callTool('sheets_create_chart', {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  chartType: 'COLUMN',
+  dataRange: 'A1:D5',
+  title: 'Monthly Sales Performance'
+});
+```
 
-1. **Clone and build:**
-   ```bash
-   git clone https://github.com/Longtran2404/mcp-google-sheets.git
-   cd mcp-google-sheets
-   npm install
-   npm run build
-   ```
-
-2. **Update `~/.cursor/mcp.json`:**
-   ```json
-   {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "node",
-         "args": ["/path/to/mcp-google-sheets/dist/index.js"],
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
-   }
-   ```
+### **Batch Operations for Performance**
+```typescript
+// Perform multiple operations in one request
+await mcp.callTool('sheets_batch_update', {
+  spreadsheetId: 'your-spreadsheet-id',
+  requests: [
+    {
+      updateCells: {
+        range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1 },
+        rows: [{ values: [{ userEnteredValue: { stringValue: 'Header' } }] }],
+        fields: 'userEnteredValue'
+      }
+    },
+    {
+      mergeCells: {
+        range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 0, endColumnIndex: 3 },
+        mergeType: 'MERGE_ALL'
+      }
+    }
+  ]
+});
+```
 
 ---
 
@@ -157,35 +232,16 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 
 ---
 
-## 📚 Usage Examples
+## 🚀 **Advantages Over Other Solutions**
 
-### **In Cursor with MCP:**
-
-```typescript
-// Get data from Google Sheets
-const data = await mcp.callTool('sheets_get_data', {
-  spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-  range: 'A1:C10'
-});
-
-// Update data
-await mcp.callTool('sheets_update_data', {
-  spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-  range: 'A1',
-  values: [['New Data', 'Updated']]
-});
-```
-
----
-
-## 🚀 Advantages Over Other Solutions
-
-- ✅ **Easy installation**: `npm install mcp-google-sheets-server`
-- ✅ **No build needed**: Automatically builds when publishing
-- ✅ **Built-in integration**: Works immediately with Cursor MCP
-- ✅ **Light and fast**: Only needs credentials, no complex setup
-- ✅ **Full support**: All basic Google Sheets API functionality
-- ✅ **TypeScript**: Safe code and easy to maintain
+- ✅ **30+ Advanced Tools** - Most comprehensive Google Sheets MCP server
+- ✅ **Professional Formatting** - Colors, fonts, borders, conditional formatting
+- ✅ **Chart Creation** - 6 chart types with customization options
+- ✅ **Data Validation** - Set rules and protect sensitive data
+- ✅ **Batch Operations** - High-performance multiple operations
+- ✅ **Sheet Management** - Full control over sheets and structure
+- ✅ **Formula Support** - Advanced calculations and automation
+- ✅ **Performance Optimized** - Efficient API usage and batch processing
 
 ---
 
@@ -226,5 +282,7 @@ If you encounter issues:
 <div align="center">
 
 **Made with ❤️ by [Longtran2404](https://github.com/Longtran2404)**
+
+**🚀 Now with 30+ Advanced Google Sheets Tools! 🚀**
 
 </div>
