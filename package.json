@@ -1,5 +1,5 @@
 {
-  "name": "@longtran2404/mcp-google-sheets",
+  "name": "mcp-google-sheets",
   "version": "1.0.0",
   "description": "MCP Server for Google Sheets - Simple and lightweight, install directly from npm",
   "main": "dist/index.js",
@@ -50,8 +50,5 @@
     "dist/**/*",
     "README.md",
     "LICENSE"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+  ]
 }
