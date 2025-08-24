@@ -42,7 +42,7 @@
 ### **Bước 1: Clone repository**
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Longtran2404/mcp-google-sheets.git
 cd mcp-google-sheets
 ```
 
@@ -85,6 +85,23 @@ npm start
 ```
 
 ### **Tích hợp với Cursor**
+
+#### **Cách 1: Tự động (Khuyến nghị)**
+
+**Windows (PowerShell):**
+
+```powershell
+.\install-mcp.ps1
+```
+
+**Linux/Mac (Bash):**
+
+```bash
+chmod +x install-mcp.sh
+./install-mcp.sh
+```
+
+#### **Cách 2: Thủ công**
 
 Thêm vào `~/.cursor/mcp.json`:
 
@@ -173,6 +190,8 @@ mcp-google-sheets/
 │   ├── auth.ts            # Authentication
 │   └── sheets-operations.ts # Google Sheets operations
 ├── dist/                  # Built files
+├── install-mcp.ps1        # Windows installer
+├── install-mcp.sh         # Linux/Mac installer
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -220,6 +239,33 @@ const result = await callTool("sheets_update_data", {
 });
 ```
 
+## 🚀 **Quick Start với Cursor**
+
+1. **Clone và build:**
+
+   ```bash
+   git clone <your-repo-url>
+   cd mcp-google-sheets
+   npm install
+   npm run build
+   ```
+
+2. **Cài đặt tự động:**
+
+   ```bash
+   # Windows
+   .\install-mcp.ps1
+
+   # Linux/Mac
+   ./install-mcp.sh
+   ```
+
+3. **Cập nhật service account key** trong `~/.cursor/mcp.json`
+
+4. **Khởi động lại Cursor**
+
+5. **Sử dụng MCP tools** qua Command Palette (Ctrl+Shift+P)
+
 ## 🤝 **Đóng góp**
 
 1. Fork repository
@@ -234,9 +280,9 @@ MIT License - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
 
 ## 🆘 **Hỗ trợ**
 
-- 📧 Email: your-email@example.com
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/mcp-google-sheets/issues)
-- 📖 Documentation: [Wiki](https://github.com/your-username/mcp-google-sheets/wiki)
+- 📧 Email: longtran2404@gmail.com
+- 🐛 Issues: [GitHub Issues](https://github.com/Longtran2404/mcp-google-sheets/issues)
+- 📖 Documentation: [Wiki](https://github.com/Longtran2404/mcp-google-sheets/wiki)
 
 ---
 
