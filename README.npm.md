@@ -36,15 +36,15 @@ See GOOGLE_SERVICE_ACCOUNT_SETUP.md for step-by-step instructions on how to get 
 Quick Configuration
 
 {
-  "mcpServers": {
-    "mcp-google-sheets": {
-      "command": "npx",
-      "args": ["mcp-google-sheets-server"],
-      "env": {
-        "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-      }
-    }
-  }
+"mcpServers": {
+"mcp-google-sheets": {
+"command": "npx",
+"args": ["mcp-google-sheets-server"],
+"env": {
+"GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
+}
+}
+}
 }
 
 Available Tools
@@ -92,15 +92,15 @@ Method 1: Use npx (Recommended)
 1. Update ~/.cursor/mcp.json:
 
    {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "npx",
-         "args": ["mcp-google-sheets-server"],
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
+   "mcpServers": {
+   "mcp-google-sheets": {
+   "command": "npx",
+   "args": ["mcp-google-sheets-server"],
+   "env": {
+   "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
+   }
+   }
+   }
    }
 
 2. Restart Cursor
@@ -114,14 +114,14 @@ Method 2: Global installation
 2. Update ~/.cursor/mcp.json:
 
    {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "mcp-google-sheets-server",
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
+   "mcpServers": {
+   "mcp-google-sheets": {
+   "command": "mcp-google-sheets-server",
+   "env": {
+   "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
+   }
+   }
+   }
    }
 
 Method 3: Local installation
@@ -136,15 +136,15 @@ Method 3: Local installation
 2. Update ~/.cursor/mcp.json:
 
    {
-     "mcpServers": {
-       "mcp-google-sheets": {
-         "command": "node",
-         "args": ["/path/to/mcp-google-sheets/dist/index.js"],
-         "env": {
-           "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
-         }
-       }
-     }
+   "mcpServers": {
+   "mcp-google-sheets": {
+   "command": "node",
+   "args": ["/path/to/mcp-google-sheets/dist/index.js"],
+   "env": {
+   "GOOGLE_SERVICE_ACCOUNT_KEY": "your-service-account-json"
+   }
+   }
+   }
    }
 
 Troubleshooting
@@ -171,15 +171,15 @@ In Cursor with MCP:
 
 // Get data from Google Sheets
 const data = await mcp.callTool('sheets_get_data', {
-  spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-  range: 'A1:C10'
+spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+range: 'A1:C10'
 });
 
 // Update data
 await mcp.callTool('sheets_update_data', {
-  spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-  range: 'A1',
-  values: [['New Data', 'Updated']]
+spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+range: 'A1',
+values: [['New Data', 'Updated']]
 });
 
 Advantages Over Other Solutions
