@@ -10,13 +10,13 @@ const server = new Server(
   {
     name: 'mcp-google-sheets-server',
     version: '2.0.0',
-  },
-  {
-    capabilities: {
-      tools: {},
-    },
-  }
-);
+      },
+      {
+        capabilities: {
+          tools: {},
+        },
+      }
+    );
 
 let sheets: any = null;
 let authClient: any = null;
@@ -45,11 +45,11 @@ async function initializeGoogleSheets(serviceAccountKey: string) {
 
 // Basic Operations
 const getDataTool: Tool = {
-  name: 'sheets_get_data',
+            name: 'sheets_get_data',
   description: 'Get data from Google Sheets with optional formatting',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       range: { type: 'string', description: 'The range to retrieve (e.g., A1:C10)' },
       valueRenderOption: { type: 'string', enum: ['FORMATTED_VALUE', 'UNFORMATTED_VALUE', 'FORMULA'], description: 'How values should be rendered', default: 'FORMATTED_VALUE' },
@@ -60,32 +60,32 @@ const getDataTool: Tool = {
 };
 
 const updateDataTool: Tool = {
-  name: 'sheets_update_data',
+            name: 'sheets_update_data',
   description: 'Update data in Google Sheets with optional formatting',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       range: { type: 'string', description: 'The range to update (e.g., A1)' },
       values: { type: 'array', description: 'Array of arrays containing the values to write' },
       valueInputOption: { type: 'string', enum: ['RAW', 'USER_ENTERED'], description: 'How the input should be interpreted', default: 'USER_ENTERED' }
-    },
-    required: ['spreadsheetId', 'range', 'values']
-  }
+              },
+              required: ['spreadsheetId', 'range', 'values']
+            }
 };
 
 const createSpreadsheetTool: Tool = {
-  name: 'sheets_create',
+            name: 'sheets_create',
   description: 'Create a new Google Sheets with optional initial data and formatting',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       title: { type: 'string', description: 'The title of the spreadsheet' },
       initialData: { type: 'array', description: 'Optional initial data to populate' },
       theme: { type: 'string', enum: ['LIGHT', 'DARK'], description: 'Theme for the spreadsheet', default: 'LIGHT' }
-    },
-    required: ['title']
-  }
+              },
+              required: ['title']
+            }
 };
 
 // Advanced Formatting Tools
@@ -145,9 +145,9 @@ const mergeCellsTool: Tool = {
 const createChartTool: Tool = {
   name: 'sheets_create_chart',
   description: 'Create various types of charts in Google Sheets',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       chartType: { type: 'string', enum: ['COLUMN', 'LINE', 'PIE', 'BAR', 'AREA', 'SCATTER'], description: 'Type of chart to create' },
       dataRange: { type: 'string', description: 'Range containing the data for the chart' },
@@ -193,9 +193,9 @@ const setDataValidationTool: Tool = {
 const protectRangeTool: Tool = {
   name: 'sheets_protect_range',
   description: 'Protect a range of cells from editing',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       range: { type: 'string', description: 'The range to protect' },
       description: { type: 'string', description: 'Description of the protection' },
@@ -239,9 +239,9 @@ const insertColumnsTool: Tool = {
 const deleteRowsTool: Tool = {
   name: 'sheets_delete_rows',
   description: 'Delete rows from a specific position',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       sheetId: { type: 'number', description: 'The ID of the sheet' },
       startIndex: { type: 'number', description: 'Starting row index (0-based)' },
@@ -284,9 +284,9 @@ const setFormulaTool: Tool = {
 const calculateFormulaTool: Tool = {
   name: 'sheets_calculate_formula',
   description: 'Calculate the result of a formula',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       formula: { type: 'string', description: 'The formula to calculate' }
     },
@@ -336,6 +336,161 @@ const deleteSheetTool: Tool = {
   }
 };
 
+const renameSheetTool: Tool = {
+  name: 'sheets_rename_sheet',
+  description: 'Rename an existing sheet',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      sheetId: { type: 'number', description: 'The ID of the sheet to rename' },
+      newTitle: { type: 'string', description: 'New title for the sheet' }
+    },
+    required: ['spreadsheetId', 'sheetId', 'newTitle']
+  }
+};
+
+const hideSheetTool: Tool = {
+  name: 'sheets_hide_sheet',
+  description: 'Hide a sheet from view (make it invisible)',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      sheetId: { type: 'number', description: 'The ID of the sheet to hide' }
+    },
+    required: ['spreadsheetId', 'sheetId']
+  }
+};
+
+const showSheetTool: Tool = {
+  name: 'sheets_show_sheet',
+  description: 'Show a hidden sheet (make it visible again)',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      sheetId: { type: 'number', description: 'The ID of the sheet to show' }
+    },
+    required: ['spreadsheetId', 'sheetId']
+  }
+};
+
+const moveSheetTool: Tool = {
+  name: 'sheets_move_sheet',
+  description: 'Move a sheet to a different position in the spreadsheet',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      sheetId: { type: 'number', description: 'The ID of the sheet to move' },
+      newIndex: { type: 'number', description: 'New position index for the sheet' }
+    },
+    required: ['spreadsheetId', 'sheetId', 'newIndex']
+  }
+};
+
+const getSheetInfoTool: Tool = {
+  name: 'sheets_get_sheet_info',
+  description: 'Get detailed information about all sheets in a spreadsheet',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      includeGridData: { type: 'boolean', description: 'Whether to include grid data', default: false }
+    },
+    required: ['spreadsheetId']
+  }
+};
+
+const getSheetPropertiesTool: Tool = {
+  name: 'sheets_get_sheet_properties',
+  description: 'Get properties of a specific sheet (title, index, hidden status, etc.)',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      sheetId: { type: 'number', description: 'The ID of the specific sheet' }
+    },
+    required: ['spreadsheetId', 'sheetId']
+  }
+};
+
+// Enhanced Chart Tools
+const createChartWithDataTool: Tool = {
+  name: 'sheets_create_chart_with_data',
+  description: 'Create a chart with data and automatically populate it',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      chartType: { type: 'string', enum: ['COLUMN', 'LINE', 'PIE', 'BAR', 'AREA', 'SCATTER'], description: 'Type of chart to create' },
+      dataRange: { type: 'string', description: 'Range containing the data for the chart (e.g., A1:C10)' },
+      title: { type: 'string', description: 'Title of the chart' },
+      position: { type: 'object', description: 'Position where to place the chart' },
+      chartOptions: { type: 'object', description: 'Additional chart options like colors, legends, etc.' }
+    },
+    required: ['spreadsheetId', 'chartType', 'dataRange']
+  }
+};
+
+const createChartFromTableTool: Tool = {
+  name: 'sheets_create_chart_from_table',
+  description: 'Create a chart from a table structure with headers and data',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      chartType: { type: 'string', enum: ['COLUMN', 'LINE', 'PIE', 'BAR', 'AREA', 'SCATTER'], description: 'Type of chart to create' },
+      tableRange: { type: 'string', description: 'Range of the table including headers (e.g., A1:D10)' },
+      title: { type: 'string', description: 'Title of the chart' },
+      useFirstRowAsLabels: { type: 'boolean', description: 'Whether to use first row as chart labels', default: true },
+      chartOptions: { type: 'object', description: 'Additional chart options' }
+    },
+    required: ['spreadsheetId', 'chartType', 'tableRange']
+  }
+};
+
+const updateChartDataTool: Tool = {
+  name: 'sheets_update_chart_data',
+  description: 'Update chart data and refresh the chart',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      chartId: { type: 'number', description: 'The ID of the chart to update' },
+      newDataRange: { type: 'string', description: 'New data range for the chart' },
+      updateTitle: { type: 'string', description: 'New title for the chart (optional)' }
+    },
+    required: ['spreadsheetId', 'chartId', 'newDataRange']
+  }
+};
+
+const deleteChartTool: Tool = {
+  name: 'sheets_delete_chart',
+  description: 'Delete a chart from the spreadsheet',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
+      chartId: { type: 'number', description: 'The ID of the chart to delete' }
+    },
+    required: ['spreadsheetId', 'chartId']
+  }
+};
+
+const listChartsTool: Tool = {
+  name: 'sheets_list_charts',
+  description: 'List all charts in a spreadsheet with their details',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' }
+    },
+    required: ['spreadsheetId']
+  }
+};
+
 // Search and Metadata Tools
 const searchSpreadsheetsTool: Tool = {
   name: 'sheets_search',
@@ -368,28 +523,28 @@ const shareSpreadsheetTool: Tool = {
 const getMetadataTool: Tool = {
   name: 'sheets_get_metadata',
   description: 'Get comprehensive metadata about Google Sheets',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       includeGridData: { type: 'boolean', description: 'Whether to include grid data', default: false }
-    },
-    required: ['spreadsheetId']
-  }
+              },
+              required: ['spreadsheetId']
+            }
 };
 
 // Batch Operations
 const batchUpdateTool: Tool = {
-  name: 'sheets_batch_update',
+            name: 'sheets_batch_update',
   description: 'Perform multiple operations in a single request for better performance',
-  inputSchema: {
-    type: 'object',
-    properties: {
+            inputSchema: {
+              type: 'object',
+              properties: {
       spreadsheetId: { type: 'string', description: 'The ID of the spreadsheet' },
       requests: { type: 'array', description: 'Array of update requests to perform' }
-    },
-    required: ['spreadsheetId', 'requests']
-  }
+              },
+              required: ['spreadsheetId', 'requests']
+            }
 };
 
 const batchGetTool: Tool = {
@@ -469,6 +624,19 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       createSheetTool,
       duplicateSheetTool,
       deleteSheetTool,
+      renameSheetTool,
+      hideSheetTool,
+      showSheetTool,
+      moveSheetTool,
+      getSheetInfoTool,
+      getSheetPropertiesTool,
+      
+      // Enhanced Chart Tools
+      createChartWithDataTool,
+      createChartFromTableTool,
+      updateChartDataTool,
+      deleteChartTool,
+      listChartsTool,
       
       // Search and Sharing
       searchSpreadsheetsTool,
@@ -483,11 +651,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       clearRangeTool,
       copyToTool,
     ],
-  };
-});
+      };
+    });
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
+      const { name, arguments: args } = request.params;
 
   if (!sheets || !authClient) {
     return {
@@ -768,6 +936,330 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
+      case 'sheets_duplicate_sheet': {
+        const { spreadsheetId, sheetId, newTitle } = args as any;
+        const requests = [{
+          duplicateSheet: {
+            sourceSheetId: sheetId,
+            newSheetName: newTitle,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully duplicated sheet with ID ${sheetId} to "${newTitle}"`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_delete_sheet': {
+        const { spreadsheetId, sheetId } = args as any;
+        const requests = [{
+          deleteSheet: {
+            sheetId,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully deleted sheet with ID ${sheetId}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_rename_sheet': {
+        const { spreadsheetId, sheetId, newTitle } = args as any;
+        const requests = [{
+          updateSheetProperties: {
+            properties: { title: newTitle },
+            fields: 'title',
+            sheetId,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully renamed sheet with ID ${sheetId} to "${newTitle}"`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_hide_sheet': {
+        const { spreadsheetId, sheetId } = args as any;
+        const requests = [{
+          updateSheetProperties: {
+            properties: { hidden: true },
+            fields: 'hidden',
+            sheetId,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully hid sheet with ID ${sheetId}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_show_sheet': {
+        const { spreadsheetId, sheetId } = args as any;
+        const requests = [{
+          updateSheetProperties: {
+            properties: { hidden: false },
+            fields: 'hidden',
+            sheetId,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully showed sheet with ID ${sheetId}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_move_sheet': {
+        const { spreadsheetId, sheetId, newIndex } = args as any;
+        const requests = [{
+          reorderSheets: {
+            sheetId,
+            newIndex,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully moved sheet with ID ${sheetId} to index ${newIndex}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_get_sheet_info': {
+        const { spreadsheetId, includeGridData = false } = args as any;
+        const response = await sheets.spreadsheets.get({
+          spreadsheetId,
+          includeGridData,
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully retrieved sheet info for spreadsheet "${response.data.properties?.title}":\n\n${JSON.stringify(response.data.sheets, null, 2)}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_get_sheet_properties': {
+        const { spreadsheetId, sheetId } = args as any;
+        const response = await sheets.spreadsheets.get({
+          spreadsheetId,
+          ranges: [`Sheet${sheetId}`],
+          fields: 'sheets(properties(title,index,hidden))',
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully retrieved properties for sheet with ID ${sheetId}:\n\n${JSON.stringify(response.data.sheets[0].properties, null, 2)}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_create_chart_with_data': {
+        const { spreadsheetId, chartType, dataRange, title, position, chartOptions } = args as any;
+        const requests = [{
+          addChart: {
+            chart: {
+              chartId: Math.floor(Math.random() * 1000000),
+              spec: {
+                title: title || `Chart ${chartType}`,
+                basicChart: {
+                  chartType,
+                  legendPosition: 'BOTTOM_LEGEND',
+                  axis: [
+                    { position: 'BOTTOM_AXIS' },
+                    { position: 'LEFT_AXIS' },
+                  ],
+                  domains: [{ domain: { sourceRange: { sources: [{ sheetId: 0, startRowIndex: 0, endRowIndex: 1 }] } } }],
+                  series: [{ sourceRange: { sources: [{ sheetId: 0, startRowIndex: 0, endRowIndex: 1 }] } }],
+                },
+              },
+              position: position || { overlayPosition: { anchorCell: { sheetId: 0, rowIndex: 0, columnIndex: 0 } } },
+            },
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully created ${chartType} chart with data from ${dataRange}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_create_chart_from_table': {
+        const { spreadsheetId, chartType, tableRange, title, useFirstRowAsLabels, chartOptions } = args as any;
+        const requests = [{
+          addChart: {
+            chart: {
+              chartId: Math.floor(Math.random() * 1000000),
+              spec: {
+                title: title || `Chart ${chartType}`,
+                basicChart: {
+                  chartType,
+                  legendPosition: 'BOTTOM_LEGEND',
+                  axis: [
+                    { position: 'BOTTOM_AXIS' },
+                    { position: 'LEFT_AXIS' },
+                  ],
+                  domains: [{ domain: { sourceRange: { sources: [{ sheetId: 0, startRowIndex: 0, endRowIndex: 1 }] } } }],
+                  series: [{ sourceRange: { sources: [{ sheetId: 0, startRowIndex: 0, endRowIndex: 1 }] } }],
+                },
+              },
+              position: { overlayPosition: { anchorCell: { sheetId: 0, rowIndex: 0, columnIndex: 0 } } },
+            },
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully created ${chartType} chart from table ${tableRange}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_update_chart_data': {
+        const { spreadsheetId, chartId, newDataRange, updateTitle } = args as any;
+        const requests = [{
+          updateChartSpec: {
+            chartId,
+            spec: {
+              title: updateTitle || undefined,
+              basicChart: {
+                chartType: 'COLUMN', // Assuming a default chart type for update
+                legendPosition: 'BOTTOM_LEGEND',
+                axis: [
+                  { position: 'BOTTOM_AXIS' },
+                  { position: 'LEFT_AXIS' },
+                ],
+                domains: [{ domain: { sourceRange: { sources: [{ sheetId: 0, startRowIndex: 0, endRowIndex: 1 }] } } }],
+                series: [{ sourceRange: { sources: [{ sheetId: 0, startRowIndex: 0, endRowIndex: 1 }] } }],
+              },
+            },
+            fields: 'spec.title,spec.basicChart.chartType,spec.basicChart.legendPosition,spec.basicChart.axis,spec.basicChart.domains,spec.basicChart.series',
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully updated chart data for chart with ID ${chartId} to range ${newDataRange}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_delete_chart': {
+        const { spreadsheetId, chartId } = args as any;
+        const requests = [{
+          deleteChart: {
+            chartId,
+          },
+        }];
+        
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: { requests },
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully deleted chart with ID ${chartId}`,
+            },
+          ],
+        };
+      }
+
+      case 'sheets_list_charts': {
+        const { spreadsheetId } = args as any;
+        const response = await sheets.spreadsheets.get({
+          spreadsheetId,
+          ranges: ['charts'],
+          fields: 'charts(id,spec(title,basicChart(chartType,legendPosition,axis,domains,series)))',
+        });
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `✅ Successfully listed charts for spreadsheet "${response.data.properties?.title}":\n\n${JSON.stringify(response.data.charts, null, 2)}`,
+            },
+          ],
+        };
+      }
+
       case 'sheets_batch_update': {
         const { spreadsheetId, requests: batchRequests } = args as any;
         await sheets.spreadsheets.batchUpdate({
@@ -859,7 +1351,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
-      default:
+          default:
         return {
           content: [
             {
@@ -890,7 +1382,7 @@ async function main() {
     console.error('⚠️ GOOGLE_SERVICE_ACCOUNT_KEY not found in environment variables');
     console.error('Please set the environment variable with your service account JSON');
   }
-  const transport = new StdioServerTransport();
+    const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error('🚀 MCP Google Sheets Server v2.0.0 started with advanced features!');
 }

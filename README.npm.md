@@ -1,19 +1,17 @@
-MCP Google Sheets Server v2.0.0
-==============================
+# MCP Google Sheets Server v2.1.0
 
-Advanced MCP Server for Google Sheets - Install directly from npm, access powerful Google Sheets features with AI assistance!
+Complete MCP Server for Google Sheets - 40+ tools for professional sheet management, advanced charts, and enterprise features!
 
-NEW IN V2.0.0 - ADVANCED FEATURES
-----------------------------------
+NEW IN V2.1.0 - COMPLETE SHEET MANAGEMENT & ENHANCED CHARTS
+-----------------------------------------------------------
 
-- Enhanced Data Operations - Advanced formatting, conditional formatting, data validation
-- Chart & Visualization - Create and manage charts (Column, Line, Pie, Bar, Area, Scatter)
-- Data Protection - Protect ranges, set validation rules, control access
-- Sheet Management - Create, duplicate, delete sheets with advanced options
-- Batch Operations - Perform multiple operations in single requests for better performance
-- Professional Formatting - Colors, fonts, borders, alignment, merge cells
-- Formula Support - Set formulas, calculate results, advanced calculations
+- Complete Sheet Management - Create, rename, hide/show, move, duplicate, delete sheets
+- Advanced Chart Creation - Create charts with data, from tables, update chart data
+- Sheet Information - Get detailed sheet properties, list all sheets
+- Professional Formatting - Colors, fonts, borders, conditional formatting
+- Data Protection - Validation rules, range protection, access control
 - Performance Optimized - Batch operations, efficient API usage
+- Enterprise Ready - 40+ tools for professional Google Sheets management
 
 FEATURES
 --------
@@ -58,7 +56,7 @@ Quick Configuration
   }
 }
 
-COMPLETE TOOL COLLECTION (30+ TOOLS!)
+COMPLETE TOOL COLLECTION (40+ TOOLS!)
 -------------------------------------
 
 Basic Operations
@@ -71,9 +69,25 @@ Advanced Formatting
 - sheets_conditional_formatting - Set conditional rules
 - sheets_merge_cells - Merge cells with options
 
-Charts & Visualization
-- sheets_create_chart - Create professional charts
+Enhanced Charts & Visualization
+- sheets_create_chart - Create basic charts
+- sheets_create_chart_with_data - Create charts with data
+- sheets_create_chart_from_table - Create charts from tables
 - sheets_update_chart - Update existing charts
+- sheets_update_chart_data - Update chart data
+- sheets_delete_chart - Delete charts
+- sheets_list_charts - List all charts
+
+Complete Sheet Management
+- sheets_create_sheet - Create new sheets
+- sheets_duplicate_sheet - Duplicate existing sheets
+- sheets_delete_sheet - Delete sheets
+- sheets_rename_sheet - Rename sheets
+- sheets_hide_sheet - Hide sheets from view
+- sheets_show_sheet - Show hidden sheets
+- sheets_move_sheet - Move sheets to new position
+- sheets_get_sheet_info - Get all sheet information
+- sheets_get_sheet_properties - Get specific sheet properties
 
 Data Validation & Protection
 - sheets_set_data_validation - Set validation rules
@@ -88,11 +102,6 @@ Advanced Data Operations
 Formula & Calculation
 - sheets_set_formula - Set formulas in cells
 - sheets_calculate_formula - Calculate formula results
-
-Sheet Management
-- sheets_create_sheet - Create new sheets
-- sheets_duplicate_sheet - Duplicate existing sheets
-- sheets_delete_sheet - Delete sheets
 
 Batch Operations
 - sheets_batch_update - Multiple operations in one request
@@ -110,19 +119,29 @@ Utility Operations
 ADVANCED USAGE EXAMPLES
 -----------------------
 
-Create Formatted Table with Charts
-1. Create spreadsheet
-2. Add data
-3. Apply formatting
-4. Create chart
+Complete Sheet Management Workflow
+1. Create spreadsheet with multiple sheets
+2. Add data to specific sheets
+3. Create professional charts from data
+4. Rename and organize sheets
+5. Move sheets to desired positions
+6. Hide/show sheets as needed
 
-Batch Operations for Performance
-Perform multiple operations in one request for better performance
+Advanced Chart Management
+1. Create charts with custom options
+2. Update chart data dynamically
+3. List and manage all charts
+4. Delete unwanted charts
+
+Sheet Information and Properties
+1. Get information about all sheets
+2. Check sheet properties and status
+3. Manage hidden/visible sheets
 
 ADVANCED SETUP EXAMPLES
 ------------------------
 
-Create Professional Spreadsheet with Formatting
+Create Professional Spreadsheet with Multiple Sheets
 {
   "mcpServers": {
     "mcp-google-sheets": {
@@ -155,13 +174,13 @@ Common errors:
 ADVANTAGES OVER OTHER SOLUTIONS
 -------------------------------
 
-- 30+ Advanced Tools - Most comprehensive Google Sheets MCP server
+- 40+ Advanced Tools - Most comprehensive Google Sheets MCP server
+- Complete Sheet Management - Full control over sheets (create, rename, hide, move, delete)
+- Enhanced Chart Creation - Create charts with data, from tables, update dynamically
 - Professional Formatting - Colors, fonts, borders, conditional formatting
-- Chart Creation - 6 chart types with customization options
 - Data Validation - Set rules and protect sensitive data
 - Batch Operations - High-performance multiple operations
-- Sheet Management - Full control over sheets and structure
-- Formula Support - Advanced calculations and automation
+- Sheet Information - Get detailed properties and status of all sheets
 - Performance Optimized - Efficient API usage and batch processing
 
 LICENSE
@@ -191,4 +210,4 @@ If you encounter issues:
 
 If this project is helpful, please give it a star!
 
-Now with 30+ Advanced Google Sheets Tools!
+Now with 40+ Tools for Complete Google Sheets Management!

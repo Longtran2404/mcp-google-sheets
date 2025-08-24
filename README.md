@@ -1,6 +1,6 @@
-# 🚀 MCP Google Sheets Server v2.0.0
+# 🚀 MCP Google Sheets Server v2.1.0
 
-> **Advanced MCP Server for Google Sheets** - Install directly from npm, access powerful Google Sheets features with AI assistance!
+> **Complete MCP Server for Google Sheets** - 40+ tools for professional sheet management, advanced charts, and enterprise features!
 
 [![npm version](https://img.shields.io/npm/v/mcp-google-sheets-server.svg)](https://www.npmjs.com/package/mcp-google-sheets-server)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-google-sheets-server.svg)](https://www.npmjs.com/package/mcp-google-sheets-server)
@@ -9,16 +9,15 @@
 
 ---
 
-## ✨ **NEW in v2.0.0 - Advanced Features!**
+## ✨ **NEW in v2.1.0 - Complete Sheet Management & Enhanced Charts!**
 
-- 📊 **Enhanced Data Operations** - Advanced formatting, conditional formatting, data validation
-- 📈 **Chart & Visualization** - Create and manage charts (Column, Line, Pie, Bar, Area, Scatter)
-- 🔒 **Data Protection** - Protect ranges, set validation rules, control access
-- 📋 **Sheet Management** - Create, duplicate, delete sheets with advanced options
-- ⚡ **Batch Operations** - Perform multiple operations in single requests for better performance
-- 🎨 **Professional Formatting** - Colors, fonts, borders, alignment, merge cells
-- 📐 **Formula Support** - Set formulas, calculate results, advanced calculations
-- 🚀 **Performance Optimized** - Batch operations, efficient API usage
+- 📋 **Complete Sheet Management** - Create, rename, hide/show, move, duplicate, delete sheets
+- 📊 **Advanced Chart Creation** - Create charts with data, from tables, update chart data
+- 🔍 **Sheet Information** - Get detailed sheet properties, list all sheets
+- 🎨 **Professional Formatting** - Colors, fonts, borders, conditional formatting
+- 🔒 **Data Protection** - Validation rules, range protection, access control
+- ⚡ **Performance Optimized** - Batch operations, efficient API usage
+- 🚀 **Enterprise Ready** - 40+ tools for professional Google Sheets management
 
 ---
 
@@ -63,79 +62,90 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 
 ---
 
-## 📋 **Complete Tool Collection (30+ Tools!)**
+## 📋 **Complete Tool Collection (40+ Tools!)**
 
 ### **🔧 Basic Operations**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_get_data`** | Get data with formatting options | `spreadsheetId`, `range`, `valueRenderOption`, `dateTimeRenderOption` |
-| **`sheets_update_data`** | Update data with input options | `spreadsheetId`, `range`, `values`, `valueInputOption` |
-| **`sheets_create`** | Create spreadsheet with theme | `title`, `initialData`, `theme` |
+| Tool                     | Description                      | Parameters                                                            |
+| ------------------------ | -------------------------------- | --------------------------------------------------------------------- |
+| **`sheets_get_data`**    | Get data with formatting options | `spreadsheetId`, `range`, `valueRenderOption`, `dateTimeRenderOption` |
+| **`sheets_update_data`** | Update data with input options   | `spreadsheetId`, `range`, `values`, `valueInputOption`                |
+| **`sheets_create`**      | Create spreadsheet with theme    | `title`, `initialData`, `theme`                                       |
 
 ### **🎨 Advanced Formatting**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_format_cells`** | Apply professional formatting | `spreadsheetId`, `range`, `backgroundColor`, `textColor`, `fontSize`, `bold`, `italic`, `alignment`, `borders` |
-| **`sheets_conditional_formatting`** | Set conditional rules | `spreadsheetId`, `range`, `ruleType`, `value`, `colors` |
-| **`sheets_merge_cells`** | Merge cells with options | `spreadsheetId`, `range`, `mergeType` |
+| Tool                                | Description                   | Parameters                                                                                                     |
+| ----------------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **`sheets_format_cells`**           | Apply professional formatting | `spreadsheetId`, `range`, `backgroundColor`, `textColor`, `fontSize`, `bold`, `italic`, `alignment`, `borders` |
+| **`sheets_conditional_formatting`** | Set conditional rules         | `spreadsheetId`, `range`, `ruleType`, `value`, `colors`                                                        |
+| **`sheets_merge_cells`**            | Merge cells with options      | `spreadsheetId`, `range`, `mergeType`                                                                          |
 
-### **📈 Charts & Visualization**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_create_chart`** | Create professional charts | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position` |
-| **`sheets_update_chart`** | Update existing charts | `spreadsheetId`, `chartId`, `title`, `dataRange` |
+### **📈 Enhanced Charts & Visualization**
+| Tool                              | Description                    | Parameters                                                                     |
+| --------------------------------- | ------------------------------ | ------------------------------------------------------------------------------ |
+| **`sheets_create_chart`**         | Create basic charts            | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position`                |
+| **`sheets_create_chart_with_data`** | Create charts with data      | `spreadsheetId`, `chartType`, `dataRange`, `title`, `position`, `chartOptions` |
+| **`sheets_create_chart_from_table`** | Create charts from tables   | `spreadsheetId`, `chartType`, `tableRange`, `title`, `useFirstRowAsLabels`     |
+| **`sheets_update_chart`**         | Update existing charts         | `spreadsheetId`, `chartId`, `title`, `dataRange`                               |
+| **`sheets_update_chart_data`**    | Update chart data              | `spreadsheetId`, `chartId`, `newDataRange`, `updateTitle`                      |
+| **`sheets_delete_chart`**         | Delete charts                  | `spreadsheetId`, `chartId`                                                      |
+| **`sheets_list_charts`**          | List all charts                | `spreadsheetId`                                                                 |
+
+### **📋 Complete Sheet Management**
+| Tool                        | Description                    | Parameters                                           |
+| --------------------------- | ------------------------------ | ---------------------------------------------------- |
+| **`sheets_create_sheet`**   | Create new sheets              | `spreadsheetId`, `title`, `index`                   |
+| **`sheets_duplicate_sheet`** | Duplicate existing sheets      | `spreadsheetId`, `sheetId`, `newTitle`              |
+| **`sheets_delete_sheet`**   | Delete sheets                  | `spreadsheetId`, `sheetId`                          |
+| **`sheets_rename_sheet`**   | Rename sheets                  | `spreadsheetId`, `sheetId`, `newTitle`              |
+| **`sheets_hide_sheet`**     | Hide sheets from view          | `spreadsheetId`, `sheetId`                          |
+| **`sheets_show_sheet`**     | Show hidden sheets             | `spreadsheetId`, `sheetId`                          |
+| **`sheets_move_sheet`**     | Move sheets to new position    | `spreadsheetId`, `sheetId`, `newIndex`              |
+| **`sheets_get_sheet_info`** | Get all sheet information      | `spreadsheetId`, `includeGridData`                  |
+| **`sheets_get_sheet_properties`** | Get specific sheet properties | `spreadsheetId`, `sheetId`                          |
 
 ### **🔒 Data Validation & Protection**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_set_data_validation`** | Set validation rules | `spreadsheetId`, `range`, `ruleType`, `values`, `message` |
-| **`sheets_protect_range`** | Protect ranges from editing | `spreadsheetId`, `range`, `description`, `warningOnly` |
+| Tool                             | Description                 | Parameters                                                |
+| -------------------------------- | --------------------------- | --------------------------------------------------------- |
+| **`sheets_set_data_validation`** | Set validation rules        | `spreadsheetId`, `range`, `ruleType`, `values`, `message` |
+| **`sheets_protect_range`**       | Protect ranges from editing | `spreadsheetId`, `range`, `description`, `warningOnly`    |
 
 ### **📊 Advanced Data Operations**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_insert_rows`** | Insert rows at position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
-| **`sheets_insert_columns`** | Insert columns at position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
-| **`sheets_delete_rows`** | Delete rows from position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+| Tool                        | Description                  | Parameters                                           |
+| --------------------------- | ---------------------------- | ---------------------------------------------------- |
+| **`sheets_insert_rows`**    | Insert rows at position      | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+| **`sheets_insert_columns`** | Insert columns at position   | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
+| **`sheets_delete_rows`**    | Delete rows from position    | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
 | **`sheets_delete_columns`** | Delete columns from position | `spreadsheetId`, `sheetId`, `startIndex`, `endIndex` |
 
 ### **📐 Formula & Calculation**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_set_formula`** | Set formulas in cells | `spreadsheetId`, `range`, `formulas` |
-| **`sheets_calculate_formula`** | Calculate formula results | `spreadsheetId`, `formula` |
-
-### **📋 Sheet Management**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_create_sheet`** | Create new sheets | `spreadsheetId`, `title`, `index` |
-| **`sheets_duplicate_sheet`** | Duplicate existing sheets | `spreadsheetId`, `sheetId`, `newTitle` |
-| **`sheets_delete_sheet`** | Delete sheets | `spreadsheetId`, `sheetId` |
+| Tool                           | Description               | Parameters                           |
+| ------------------------------ | ------------------------- | ------------------------------------ |
+| **`sheets_set_formula`**       | Set formulas in cells     | `spreadsheetId`, `range`, `formulas` |
+| **`sheets_calculate_formula`** | Calculate formula results | `spreadsheetId`, `formula`           |
 
 ### **⚡ Batch Operations**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_batch_update`** | Multiple operations in one request | `spreadsheetId`, `requests` |
-| **`sheets_batch_get`** | Get data from multiple ranges | `spreadsheetId`, `ranges`, `valueRenderOption` |
+| Tool                      | Description                        | Parameters                                     |
+| ------------------------- | ---------------------------------- | ---------------------------------------------- |
+| **`sheets_batch_update`** | Multiple operations in one request | `spreadsheetId`, `requests`                    |
+| **`sheets_batch_get`**    | Get data from multiple ranges      | `spreadsheetId`, `ranges`, `valueRenderOption` |
 
 ### **🔍 Search & Sharing**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_search`** | Search spreadsheets | `query`, `maxResults` |
-| **`sheets_share`** | Share with permissions | `spreadsheetId`, `email`, `role`, `message` |
-| **`sheets_get_metadata`** | Get comprehensive metadata | `spreadsheetId`, `includeGridData` |
+| Tool                      | Description                | Parameters                                  |
+| ------------------------- | -------------------------- | ------------------------------------------- |
+| **`sheets_search`**       | Search spreadsheets        | `query`, `maxResults`                       |
+| **`sheets_share`**        | Share with permissions     | `spreadsheetId`, `email`, `role`, `message` |
+| **`sheets_get_metadata`** | Get comprehensive metadata | `spreadsheetId`, `includeGridData`          |
 
 ### **🧹 Utility Operations**
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| **`sheets_clear_range`** | Clear content and formatting | `spreadsheetId`, `range` |
-| **`sheets_copy_to`** | Copy sheets between spreadsheets | `spreadsheetId`, `sheetId`, `destinationSpreadsheetId` |
+| Tool                     | Description                      | Parameters                                             |
+| ------------------------ | -------------------------------- | ------------------------------------------------------ |
+| **`sheets_clear_range`** | Clear content and formatting     | `spreadsheetId`, `range`                               |
+| **`sheets_copy_to`**     | Copy sheets between spreadsheets | `spreadsheetId`, `sheetId`, `destinationSpreadsheetId` |
 
 ---
 
 ## 🛠️ Advanced Setup Examples
 
-### **Create Professional Spreadsheet with Formatting**
+### **Create Professional Spreadsheet with Multiple Sheets**
 ```json
 {
   "mcpServers": {
@@ -154,68 +164,127 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 
 ## 📚 **Advanced Usage Examples**
 
-### **Create Formatted Table with Charts**
+### **Complete Sheet Management Workflow**
 ```typescript
 // 1. Create spreadsheet
-const spreadsheet = await mcp.callTool('sheets_create', {
-  title: 'Sales Report 2024',
-  theme: 'LIGHT'
+const spreadsheet = await mcp.callTool("sheets_create", {
+  title: "Business Dashboard 2024",
+  theme: "LIGHT",
 });
 
-// 2. Add data
-await mcp.callTool('sheets_update_data', {
+// 2. Create multiple sheets
+await mcp.callTool("sheets_create_sheet", {
   spreadsheetId: spreadsheet.spreadsheetId,
-  range: 'A1:D5',
+  title: "Sales Data",
+  index: 1,
+});
+
+await mcp.callTool("sheets_create_sheet", {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  title: "Charts",
+  index: 2,
+});
+
+// 3. Add data to Sales Data sheet
+await mcp.callTool("sheets_update_data", {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  range: "Sales Data!A1:D6",
   values: [
-    ['Month', 'Sales', 'Expenses', 'Profit'],
-    ['January', 10000, 6000, 4000],
-    ['February', 12000, 7000, 5000],
-    ['March', 15000, 8000, 7000],
-    ['April', 18000, 9000, 9000]
-  ]
+    ["Month", "Revenue", "Expenses", "Profit"],
+    ["January", 50000, 30000, 20000],
+    ["February", 55000, 32000, 23000],
+    ["March", 60000, 35000, 25000],
+    ["April", 65000, 38000, 27000],
+    ["May", 70000, 40000, 30000],
+  ],
 });
 
-// 3. Apply formatting
-await mcp.callTool('sheets_format_cells', {
+// 4. Create professional chart
+await mcp.callTool("sheets_create_chart_from_table", {
   spreadsheetId: spreadsheet.spreadsheetId,
-  range: 'A1:D1',
-  backgroundColor: { red: 0.2, green: 0.6, blue: 0.9, alpha: 1 },
-  textColor: { red: 1, green: 1, blue: 1, alpha: 1 },
-  bold: true,
-  fontSize: 14,
-  horizontalAlignment: 'CENTER'
+  chartType: "COLUMN",
+  tableRange: "Sales Data!A1:D6",
+  title: "Monthly Financial Performance",
+  useFirstRowAsLabels: true,
 });
 
-// 4. Create chart
-await mcp.callTool('sheets_create_chart', {
+// 5. Rename and organize sheets
+await mcp.callTool("sheets_rename_sheet", {
   spreadsheetId: spreadsheet.spreadsheetId,
-  chartType: 'COLUMN',
-  dataRange: 'A1:D5',
-  title: 'Monthly Sales Performance'
+  sheetId: 0, // First sheet
+  newTitle: "Summary",
+});
+
+// 6. Move Charts sheet to the end
+await mcp.callTool("sheets_move_sheet", {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  sheetId: 2, // Charts sheet
+  newIndex: 3, // Move to end
+});
+
+// 7. Hide a temporary sheet if needed
+await mcp.callTool("sheets_hide_sheet", {
+  spreadsheetId: spreadsheet.spreadsheetId,
+  sheetId: 1, // Hide Sales Data sheet
 });
 ```
 
-### **Batch Operations for Performance**
+### **Advanced Chart Management**
 ```typescript
-// Perform multiple operations in one request
-await mcp.callTool('sheets_batch_update', {
-  spreadsheetId: 'your-spreadsheet-id',
-  requests: [
-    {
-      updateCells: {
-        range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1 },
-        rows: [{ values: [{ userEnteredValue: { stringValue: 'Header' } }] }],
-        fields: 'userEnteredValue'
-      }
-    },
-    {
-      mergeCells: {
-        range: { sheetId: 0, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 0, endColumnIndex: 3 },
-        mergeType: 'MERGE_ALL'
-      }
-    }
-  ]
+// Create chart with custom options
+await mcp.callTool("sheets_create_chart_with_data", {
+  spreadsheetId: "your-spreadsheet-id",
+  chartType: "LINE",
+  dataRange: "A1:C10",
+  title: "Trend Analysis",
+  chartOptions: {
+    colors: ["#4285F4", "#34A853"],
+    legendPosition: "RIGHT_LEGEND",
+  },
 });
+
+// Update chart data when source data changes
+await mcp.callTool("sheets_update_chart_data", {
+  spreadsheetId: "your-spreadsheet-id",
+  chartId: 12345,
+  newDataRange: "A1:C15", // Extended range
+  updateTitle: "Updated Trend Analysis",
+});
+
+// List all charts in spreadsheet
+const charts = await mcp.callTool("sheets_list_charts", {
+  spreadsheetId: "your-spreadsheet-id",
+});
+
+// Delete unwanted charts
+await mcp.callTool("sheets_delete_chart", {
+  spreadsheetId: "your-spreadsheet-id",
+  chartId: 12345,
+});
+```
+
+### **Sheet Information and Properties**
+```typescript
+// Get information about all sheets
+const sheetInfo = await mcp.callTool("sheets_get_sheet_info", {
+  spreadsheetId: "your-spreadsheet-id",
+  includeGridData: false,
+});
+
+// Get properties of specific sheet
+const sheetProps = await mcp.callTool("sheets_get_sheet_properties", {
+  spreadsheetId: "your-spreadsheet-id",
+  sheetId: 0,
+});
+
+// Check if sheet is hidden
+if (sheetProps.properties.hidden) {
+  // Show the sheet
+  await mcp.callTool("sheets_show_sheet", {
+    spreadsheetId: "your-spreadsheet-id",
+    sheetId: 0,
+  });
+}
 ```
 
 ---
@@ -224,23 +293,23 @@ await mcp.callTool('sheets_batch_update', {
 
 ### **Common errors:**
 
-| Error | Solution |
-|-------|----------|
-| **"GOOGLE_SERVICE_ACCOUNT_KEY not found"** | • Check environment variable in mcp.json<br>• Ensure JSON is properly escaped |
-| **"Permission denied"** | • Check service account access permissions<br>• Ensure Google Sheets are shared with service account |
-| **"Invalid credentials"** | • Check service account JSON file<br>• Ensure Google Sheets API is enabled |
+| Error                                      | Solution                                                                                             |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| **"GOOGLE_SERVICE_ACCOUNT_KEY not found"** | • Check environment variable in mcp.json<br>• Ensure JSON is properly escaped                        |
+| **"Permission denied"**                    | • Check service account access permissions<br>• Ensure Google Sheets are shared with service account |
+| **"Invalid credentials"**                  | • Check service account JSON file<br>• Ensure Google Sheets API is enabled                           |
 
 ---
 
 ## 🚀 **Advantages Over Other Solutions**
 
-- ✅ **30+ Advanced Tools** - Most comprehensive Google Sheets MCP server
+- ✅ **40+ Advanced Tools** - Most comprehensive Google Sheets MCP server
+- ✅ **Complete Sheet Management** - Full control over sheets (create, rename, hide, move, delete)
+- ✅ **Enhanced Chart Creation** - Create charts with data, from tables, update dynamically
 - ✅ **Professional Formatting** - Colors, fonts, borders, conditional formatting
-- ✅ **Chart Creation** - 6 chart types with customization options
 - ✅ **Data Validation** - Set rules and protect sensitive data
 - ✅ **Batch Operations** - High-performance multiple operations
-- ✅ **Sheet Management** - Full control over sheets and structure
-- ✅ **Formula Support** - Advanced calculations and automation
+- ✅ **Sheet Information** - Get detailed properties and status of all sheets
 - ✅ **Performance Optimized** - Efficient API usage and batch processing
 
 ---
@@ -283,6 +352,6 @@ If you encounter issues:
 
 **Made with ❤️ by [Longtran2404](https://github.com/Longtran2404)**
 
-**🚀 Now with 30+ Advanced Google Sheets Tools! 🚀**
+**🚀 Now with 40+ Tools for Complete Google Sheets Management! 🚀**
 
 </div>
