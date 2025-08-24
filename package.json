@@ -1,6 +1,6 @@
 {
   "name": "mcp-google-sheets-server",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MCP Server for Google Sheets - Simple and lightweight, install directly from npm",
   "main": "dist/index.js",
   "type": "module",
