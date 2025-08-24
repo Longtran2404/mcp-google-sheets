@@ -3,24 +3,28 @@
 ## ✅ **Những Gì Đã Hoàn Thành**
 
 ### **1. Package NPM**
+
 - ✅ **Package đã được publish** thành công lên npm: `mcp-google-sheets`
 - ✅ **Cài đặt đơn giản**: `npm install -g mcp-google-sheets`
 - ✅ **Sử dụng npx**: `npx mcp-google-sheets`
 - ✅ **Tự động build** khi publish
 
 ### **2. MCP Server Configuration**
+
 - ✅ **Package.json** đã được cấu hình đúng cho npm
 - ✅ **TypeScript** build configuration hoàn chỉnh
 - ✅ **Dependencies** đã được tối ưu hóa
 - ✅ **Scripts** build, clean, start đã sẵn sàng
 
 ### **3. Documentation**
+
 - ✅ **README.md** với hướng dẫn cài đặt và sử dụng
 - ✅ **GOOGLE_SERVICE_ACCOUNT_SETUP.md** với hướng dẫn chi tiết từng bước
 - ✅ **Ví dụ sử dụng** và troubleshooting
 - ✅ **Cấu hình MCP** cho Cursor
 
 ### **4. GitHub Repository**
+
 - ✅ **Code đã được push** lên GitHub
 - ✅ **Repository** đã được cập nhật với tất cả thay đổi
 - ✅ **Documentation** đã được đồng bộ
@@ -28,15 +32,19 @@
 ## 🚀 **Cách Sử Dụng**
 
 ### **Bước 1: Cài đặt Package**
+
 ```bash
 npm install -g mcp-google-sheets
 ```
 
 ### **Bước 2: Lấy Google Service Account Key**
+
 Xem file [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) để biết cách lấy key từng bước một.
 
 ### **Bước 3: Cấu hình Cursor MCP**
+
 Cập nhật `~/.cursor/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -52,6 +60,7 @@ Cập nhật `~/.cursor/mcp.json`:
 ```
 
 ### **Bước 4: Khởi động lại Cursor**
+
 Sau khi cập nhật config, khởi động lại Cursor để MCP server hoạt động.
 
 ## 🎯 **Tính Năng Có Sẵn**

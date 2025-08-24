@@ -1,7 +1,7 @@
 # 🔐 Hướng Dẫn Chi Tiết: Lấy Google Service Account Key
 
 ## 📋 **Tổng Quan**
-Google Service Account Key là cách xác thực an toàn và đơn giản nhất để MCP Google Sheets Server có thể truy cập Google Sheets của bạn. Hướng dẫn này sẽ đi qua từng bước một cách chi tiết.
+Google Service Account Key là cách xác thực an toàn và đơn giản nhất để MCP Google Sheets Server có thể truy cập Google Sheets của bạn. Hướng dẫn này sẽ đi qua từng bước một cách chi tiết với hình ảnh mô tả.
 
 ## 🚀 **Bước 1: Truy Cập Google Cloud Console**
 
