@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "google-sheets": {
+      "command": "npx", 
+      "args": ["mcp-google-sheets-server@latest"],
+      "env": {
+        "GOOGLE_SERVICE_ACCOUNT_KEY": "${GOOGLE_SERVICE_ACCOUNT_KEY}"
+      },
+      "description": "Advanced Google Sheets MCP Server with 40+ tools",
+      "capabilities": [
+        "sheets_get_data - Get data from spreadsheet ranges",
+        "sheets_update_data - Update spreadsheet data",
+        "sheets_create - Create new spreadsheets",
+        "sheets_format_cells - Format cells with colors, fonts, borders",
+        "sheets_create_chart - Create various chart types",
+        "sheets_conditional_formatting - Apply conditional formatting rules",
+        "sheets_merge_cells - Merge cell ranges",
+        "sheets_set_data_validation - Add data validation rules",
+        "sheets_protect_range - Protect cells from editing",
+        "sheets_insert_rows - Insert rows at specific positions",
+        "sheets_insert_columns - Insert columns at specific positions", 
+        "sheets_delete_rows - Delete rows from spreadsheet",
+        "sheets_delete_columns - Delete columns from spreadsheet",
+        "sheets_set_formula - Set formulas in cells",
+        "sheets_create_sheet - Create new sheets in workbook",
+        "sheets_duplicate_sheet - Duplicate existing sheets",
+        "sheets_delete_sheet - Delete sheets from workbook",
+        "sheets_rename_sheet - Rename existing sheets",
+        "sheets_hide_sheet - Hide sheets from view",
+        "sheets_show_sheet - Show hidden sheets",
+        "sheets_search - Search for spreadsheets",
+        "sheets_share - Share spreadsheets with permissions",
+        "sheets_batch_update - Perform multiple operations efficiently",
+        "sheets_batch_get - Get data from multiple ranges"
+      ]
+    }
+  }
+}

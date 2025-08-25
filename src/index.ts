@@ -34,6 +34,60 @@ let sheets: any = null;
 let authClient: any = null;
 let isInitialized = false;
 
+// Retry utility with exponential backoff
+async function retryWithBackoff<T>(
+  operation: () => Promise<T>,
+  maxRetries: number = 3,
+  initialDelay: number = 1000
+): Promise<T> {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error: any) {
+      if (attempt === maxRetries) {
+        throw error;
+      }
+
+      // Check if error is retryable (rate limits, network issues)
+      const isRetryable = error.code === 403 || error.code === 429 || error.code === 500 || 
+                         error.code === 502 || error.code === 503 || error.code === 504 ||
+                         error.message?.includes('rate limit') || error.message?.includes('quota');
+
+      if (!isRetryable) {
+        throw error;
+      }
+
+      const delay = initialDelay * Math.pow(2, attempt - 1) + Math.random() * 1000;
+      log(`Sheets API retry attempt ${attempt} in ${Math.round(delay)}ms: ${error.message}`, 'debug');
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+
+// Simple in-memory cache for frequently accessed data
+const sheetsCache = new Map<string, { data: any; timestamp: number; ttl: number }>();
+
+function getCachedSheetsData(key: string): any | null {
+  const cached = sheetsCache.get(key);
+  if (!cached) return null;
+  
+  if (Date.now() - cached.timestamp > cached.ttl) {
+    sheetsCache.delete(key);
+    return null;
+  }
+  
+  return cached.data;
+}
+
+function setCachedSheetsData(key: string, data: any, ttl: number = 300000): void { // 5 minutes default
+  sheetsCache.set(key, {
+    data,
+    timestamp: Date.now(),
+    ttl
+  });
+}
+
 async function initializeGoogleSheets() {
   try {
     log('Initializing Google Sheets authentication...', 'debug');
