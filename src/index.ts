@@ -6,24 +6,78 @@ import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelconte
 import { GoogleAuth } from 'google-auth-library';
 import { google } from 'googleapis';
 
+// Enhanced logging
+const log = (message: string, level: 'info' | 'error' | 'debug' = 'info') => {
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] [${level.toUpperCase()}] MCP-Google-Sheets: ${message}`;
+  
+  if (level === 'error') {
+    console.error(logMessage);
+  } else if (process.env.LOG_LEVEL === 'debug' || level === 'info') {
+    console.error(logMessage); // Use stderr for MCP logging
+  }
+};
+
 const server = new Server(
   {
     name: 'mcp-google-sheets-server',
-    version: '2.0.0',
-      },
-      {
-        capabilities: {
-          tools: {},
-        },
-      }
-    );
+    version: '2.1.0',
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  }
+);
 
 let sheets: any = null;
 let authClient: any = null;
+let isInitialized = false;
 
-async function initializeGoogleSheets(serviceAccountKey: string) {
+async function initializeGoogleSheets() {
   try {
-    const credentials = JSON.parse(serviceAccountKey);
+    log('Initializing Google Sheets authentication...', 'debug');
+    
+    const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+    if (!serviceAccountKey) {
+      throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY environment variable is required');
+    }
+
+    let credentials;
+    try {
+      // Handle escaped newlines in private key
+      const cleanedKey = serviceAccountKey.replace(/\\n/g, '\n');
+      credentials = JSON.parse(cleanedKey);
+      
+      log('Successfully parsed Service Account credentials as JSON', 'debug');
+      
+      // Validate credentials structure
+      if (!credentials.private_key || !credentials.client_email) {
+        throw new Error('Invalid Service Account credentials structure');
+      }
+      
+      // Ensure private key is properly formatted
+      if (!credentials.private_key.includes('-----BEGIN PRIVATE KEY-----')) {
+        throw new Error('Invalid private key format');
+      }
+      
+    } catch (parseError) {
+      log('Failed to parse Service Account credentials as JSON, treating as file path', 'debug');
+      // If parsing fails, treat as file path
+      const auth = new GoogleAuth({
+        keyFile: serviceAccountKey,
+        scopes: [
+          'https://www.googleapis.com/auth/spreadsheets',
+          'https://www.googleapis.com/auth/drive',
+        ],
+      });
+      authClient = await auth.getClient();
+      sheets = google.sheets({ version: 'v4', auth: authClient });
+      isInitialized = true;
+      log('Google Sheets API initialized successfully with keyFile', 'info');
+      return true;
+    }
+
     const auth = new GoogleAuth({
       credentials,
       scopes: [
@@ -34,14 +88,39 @@ async function initializeGoogleSheets(serviceAccountKey: string) {
 
     authClient = await auth.getClient();
     sheets = google.sheets({ version: 'v4', auth: authClient });
-
-    console.error('✅ Google Sheets API initialized successfully');
+    isInitialized = true;
+    log('Google Sheets API initialized successfully', 'info');
     return true;
   } catch (error) {
-    console.error('❌ Failed to initialize Google Sheets API:', error);
+    log(`Failed to initialize Google Sheets API: ${error}`, 'error');
     return false;
   }
 }
+
+// Initialize authentication with retry
+let retryCount = 0;
+const maxRetries = 3;
+
+async function initializeWithRetry() {
+  try {
+    const success = await initializeGoogleSheets();
+    if (!success) {
+      throw new Error('Initialization failed');
+    }
+  } catch (error) {
+    retryCount++;
+    if (retryCount < maxRetries) {
+      log(`Authentication failed, retrying... (${retryCount}/${maxRetries})`, 'info');
+      setTimeout(initializeWithRetry, 1000 * retryCount);
+    } else {
+      log(`Authentication failed after ${maxRetries} attempts`, 'error');
+      throw error;
+    }
+  }
+}
+
+// Initialize authentication
+initializeWithRetry();
 
 // Basic Operations
 const getDataTool: Tool = {
@@ -657,7 +736,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
 
-  if (!sheets || !authClient) {
+  if (!isInitialized) {
     return {
       content: [
         {
@@ -1362,7 +1441,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
     }
   } catch (error: any) {
-    console.error(`❌ Error in tool ${name}:`, error);
+    log(`❌ Error in tool ${name}: ${error.message}`, 'error');
     return {
       content: [
         {
@@ -1375,16 +1454,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 async function main() {
-  const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
-  if (serviceAccountKey) {
-    await initializeGoogleSheets(serviceAccountKey);
-  } else {
-    console.error('⚠️ GOOGLE_SERVICE_ACCOUNT_KEY not found in environment variables');
-    console.error('Please set the environment variable with your service account JSON');
-  }
+  try {
+    log('Starting MCP Google Sheets Server...', 'info');
+    log('Attempting to initialize Google Sheets API...', 'info');
+    
+    // Start server first, then initialize authentication
     const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('🚀 MCP Google Sheets Server v2.0.0 started with advanced features!');
+    await server.connect(transport);
+    
+    log('MCP server connected, initializing Google Sheets API...', 'info');
+    
+    // Initialize authentication in background
+    initializeWithRetry();
+    
+    log('🚀 MCP Google Sheets Server v2.1.0 started successfully!', 'info');
+    log('Server ready to handle requests', 'info');
+  } catch (error) {
+    log(`Failed to start MCP server: ${error}`, 'error');
+    process.exit(1);
+  }
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  log(`Unhandled error: ${error}`, 'error');
+  process.exit(1);
+});
