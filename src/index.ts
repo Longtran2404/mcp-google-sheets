@@ -62,20 +62,25 @@ async function initializeGoogleSheets() {
       }
       
     } catch (parseError) {
-      log('Failed to parse Service Account credentials as JSON, treating as file path', 'debug');
-      // If parsing fails, treat as file path
-      const auth = new GoogleAuth({
-        keyFile: serviceAccountKey,
-        scopes: [
-          'https://www.googleapis.com/auth/spreadsheets',
-          'https://www.googleapis.com/auth/drive',
-        ],
-      });
-      authClient = await auth.getClient();
-      sheets = google.sheets({ version: 'v4', auth: authClient });
-      isInitialized = true;
-      log('Google Sheets API initialized successfully with keyFile', 'info');
-      return true;
+      log(`Failed to parse Service Account credentials as JSON: ${parseError}`, 'error');
+      if (serviceAccountKey && serviceAccountKey.length > 0 && !serviceAccountKey.startsWith('{')) {
+        log('Treating as file path', 'debug');
+        // If parsing fails and looks like file path, treat as file path
+        const auth = new GoogleAuth({
+          keyFile: serviceAccountKey,
+          scopes: [
+            'https://www.googleapis.com/auth/spreadsheets',
+            'https://www.googleapis.com/auth/drive',
+          ],
+        });
+        authClient = await auth.getClient();
+        sheets = google.sheets({ version: 'v4', auth: authClient });
+        isInitialized = true;
+        log('Google Sheets API initialized successfully with keyFile', 'info');
+        return true;
+      } else {
+        throw new Error(`Invalid Service Account credentials: ${parseError}`);
+      }
     }
 
     const auth = new GoogleAuth({
