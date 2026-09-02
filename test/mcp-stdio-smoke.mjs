@@ -4,6 +4,7 @@ import { dirname, resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { CallToolResultSchema } from '@modelcontextprotocol/sdk/types.js';
 
 const testDirectory = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(testDirectory, '..');
@@ -60,7 +61,22 @@ try {
   const secondListing = await client.listTools(undefined, { timeout: 10_000 });
   assert.equal(secondListing.tools.length, 37);
 
-  console.log(`MCP stdio smoke passed: ${tools.length} tools listed without Google credentials.`);
+  const noAuthResult = CallToolResultSchema.parse(
+    await client.callTool(
+      {
+        name: 'sheets_get_data',
+        arguments: { spreadsheetId: 'credential-free-smoke', range: 'Sheet1!A1' },
+      },
+      undefined,
+      { timeout: 10_000 },
+    ),
+  );
+  assert.equal(noAuthResult.isError, true);
+  assert.match(noAuthResult.content[0].text, /not initialized/i);
+
+  console.log(
+    `MCP stdio smoke passed: ${tools.length} tools listed and credential-free errors are marked correctly.`,
+  );
 } catch (error) {
   if (serverStderr) {
     console.error('Server stderr:\n' + serverStderr);
