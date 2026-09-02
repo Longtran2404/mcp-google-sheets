@@ -793,6 +793,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   if (!isInitialized) {
     return {
+      isError: true,
       content: [
         {
           type: 'text',
@@ -1487,6 +1488,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
           default:
         return {
+          isError: true,
           content: [
             {
               type: 'text',
@@ -1498,6 +1500,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   } catch (error: any) {
     log(`❌ Error in tool ${name}: ${error.message}`, 'error');
     return {
+      isError: true,
       content: [
         {
           type: 'text',

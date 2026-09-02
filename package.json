@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "mcp-google-sheets-server": "./dist/index.js"
+    "mcp-google-sheets-server": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -15,7 +15,7 @@
     "test:syntax": "node --check dist/index.js",
     "test:smoke": "node test/mcp-stdio-smoke.mjs",
     "test": "npm run build && npm run test:syntax && npm run test:smoke",
-    "prepublishOnly": "npm run clean && npm test",
+    "prepublishOnly": "npm test && npm audit --omit=dev --audit-level=high",
     "rebuild": "npm run clean && npm run build"
   },
   "keywords": [
@@ -37,7 +37,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Longtran2404/mcp-google-sheets.git"
+    "url": "git+https://github.com/Longtran2404/mcp-google-sheets.git"
   },
   "bugs": {
     "url": "https://github.com/Longtran2404/mcp-google-sheets/issues"
