@@ -127,7 +127,7 @@ If you encounter issues:
 1. Check the [Google Cloud documentation](https://cloud.google.com/docs)
 2. Review the [Google Sheets API documentation](https://developers.google.com/sheets/api)
 3. Create an issue in the [GitHub repository](https://github.com/Longtran2404/mcp-google-sheets/issues)
-4. Contact support at: **tranminhlong2404@gmail.com**
+4. Contact TaskKit support at: **support@taskkit.vn**
 
 ## Advanced Configuration
 
@@ -170,7 +170,7 @@ Then reference it in your configuration:
 
 For additional support or questions:
 
-- **Email**: tranminhlong2404@gmail.com
+- **Email**: support@taskkit.vn
 - **GitHub Issues**: [Create an issue](https://github.com/Longtran2404/mcp-google-sheets/issues)
 - **Documentation**: [GitHub README](https://github.com/Longtran2404/mcp-google-sheets#readme)
 

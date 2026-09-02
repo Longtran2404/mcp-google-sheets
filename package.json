@@ -1,7 +1,7 @@
 {
   "name": "mcp-google-sheets-server",
-  "version": "2.2.0",
-  "description": "Advanced MCP Server for Google Sheets - 40+ tools for complete sheet management, charts, and formatting",
+  "version": "2.2.1",
+  "description": "Official TaskKit MCP server for Google Sheets data, formatting, chart, and worksheet automation.",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
@@ -11,9 +11,11 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
-    "clean": "if exist dist rmdir /s /q dist",
-    "prepublishOnly": "npm run clean && npm run build",
-    "test": "echo \"No tests specified\" && exit 0",
+    "clean": "tsc --build --clean",
+    "test:syntax": "node --check dist/index.js",
+    "test:smoke": "node test/mcp-stdio-smoke.mjs",
+    "test": "npm run build && npm run test:syntax && npm run test:smoke",
+    "prepublishOnly": "npm run clean && npm test",
     "rebuild": "npm run clean && npm run build"
   },
   "keywords": [
@@ -22,10 +24,16 @@
     "model-context-protocol",
     "cursor",
     "ai",
+    "ai-agent",
+    "taskkit",
+    "taskkit-vn",
     "spreadsheets",
     "automation"
   ],
-  "author": "Longtran2404 <longtran2404@gmail.com>",
+  "author": {
+    "name": "Trần Minh Long",
+    "url": "https://www.taskkit.vn/tran-minh-long"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -34,18 +42,18 @@
   "bugs": {
     "url": "https://github.com/Longtran2404/mcp-google-sheets/issues"
   },
-  "homepage": "https://github.com/Longtran2404/mcp-google-sheets#readme",
+  "homepage": "https://www.taskkit.vn/ma-nguon-mo",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.4.0",
-    "googleapis": "^128.0.0",
-    "google-auth-library": "^9.0.0"
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "googleapis": "^178.0.0",
+    "google-auth-library": "^10.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "files": [
     "dist/**/*",

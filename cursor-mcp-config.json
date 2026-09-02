@@ -6,7 +6,7 @@
       "env": {
         "GOOGLE_SERVICE_ACCOUNT_KEY": "${GOOGLE_SERVICE_ACCOUNT_KEY}"
       },
-      "description": "Advanced Google Sheets MCP Server with 40+ tools",
+      "description": "Official TaskKit Google Sheets MCP server with 37 tools",
       "capabilities": [
         "sheets_get_data - Get data from spreadsheet ranges",
         "sheets_update_data - Update spreadsheet data",

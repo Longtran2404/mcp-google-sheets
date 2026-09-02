@@ -1,6 +1,14 @@
-# 🚀 MCP Google Sheets Server v2.1.0
+# 🚀 MCP Google Sheets Server v2.2.1
 
-> **Complete MCP Server for Google Sheets** - 40+ tools for professional sheet management, advanced charts, and enterprise features!
+> **Official TaskKit MCP Server for Google Sheets** - 37 tools for sheet management, formatting, charts, and automation.
+
+This is an official open-source package in the [TaskKit](https://www.taskkit.vn) ecosystem, maintained by [Trần Minh Long](https://www.taskkit.vn/tran-minh-long).
+
+[TaskKit open-source catalog](https://www.taskkit.vn/ma-nguon-mo) · [npm](https://www.npmjs.com/package/mcp-google-sheets-server) · [GitHub](https://github.com/Longtran2404/mcp-google-sheets)
+
+Version 2.2.1 aligns the package with TaskKit's canonical identity and updates the MCP and Google API dependencies to patched supported releases.
+
+**Runtime requirement:** Node.js 20 or newer.
 
 [![npm version](https://img.shields.io/npm/v/mcp-google-sheets-server.svg)](https://www.npmjs.com/package/mcp-google-sheets-server)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-google-sheets-server.svg)](https://www.npmjs.com/package/mcp-google-sheets-server)
@@ -9,7 +17,7 @@
 
 ---
 
-## ✨ **NEW in v2.1.0 - Complete Sheet Management & Enhanced Charts!**
+## ✨ Complete Sheet Management & Enhanced Charts
 
 - 📋 **Complete Sheet Management** - Create, rename, hide/show, move, duplicate, delete sheets
 - 📊 **Advanced Chart Creation** - Create charts with data, from tables, update chart data
@@ -17,11 +25,13 @@
 - 🎨 **Professional Formatting** - Colors, fonts, borders, conditional formatting
 - 🔒 **Data Protection** - Validation rules, range protection, access control
 - ⚡ **Performance Optimized** - Batch operations, efficient API usage
-- 🚀 **Enterprise Ready** - 40+ tools for professional Google Sheets management
+- 🚀 **Enterprise Ready** - 37 tools for professional Google Sheets management
 
 ---
 
 ## 🚀 Quick Installation
+
+Install [Node.js 20 or newer](https://nodejs.org/) before using the package.
 
 ### **Method 1: Install from npm (Recommended)**
 
@@ -47,7 +57,7 @@ npx mcp-google-sheets-server
 
 ### **Detailed Guide**
 
-See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-by-step instructions on how to get Google Service Account Key.
+See the [Google Service Account setup guide](https://github.com/Longtran2404/mcp-google-sheets/blob/master/GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-by-step instructions on how to get a Google Service Account key.
 
 ### **Quick Configuration**
 
@@ -67,7 +77,7 @@ See [GOOGLE_SERVICE_ACCOUNT_SETUP.md](GOOGLE_SERVICE_ACCOUNT_SETUP.md) for step-
 
 ---
 
-## 📋 **Complete Tool Collection (40+ Tools!)**
+## 📋 **Complete Tool Collection (37 Tools)**
 
 ### **🔧 Basic Operations**
 
@@ -322,7 +332,7 @@ if (sheetProps.properties.hidden) {
 
 ## 🚀 **Advantages Over Other Solutions**
 
-- ✅ **40+ Advanced Tools** - Most comprehensive Google Sheets MCP server
+- ✅ **37 Advanced Tools** - Complete Google Sheets MCP tool collection
 - ✅ **Complete Sheet Management** - Full control over sheets (create, rename, hide, move, delete)
 - ✅ **Enhanced Chart Creation** - Create charts with data, from tables, update dynamically
 - ✅ **Professional Formatting** - Colors, fonts, borders, conditional formatting
@@ -358,6 +368,7 @@ If you encounter issues:
 1. 🔍 **Check** [Issues](https://github.com/Longtran2404/mcp-google-sheets/issues) first
 2. 🆕 **Create** a new issue if none exists
 3. 📝 **Describe** the problem in detail and how to reproduce it
+4. 🌐 **TaskKit**: [Official open-source catalog](https://www.taskkit.vn/ma-nguon-mo)
 
 ---
 
@@ -371,6 +382,8 @@ If you encounter issues:
 
 **Made with ❤️ by [Longtran2404](https://github.com/Longtran2404)**
 
-**🚀 Now with 40+ Tools for Complete Google Sheets Management! 🚀**
+**Founder profile: [Trần Minh Long](https://www.taskkit.vn/tran-minh-long)**
+
+**🚀 37 Tools for Complete Google Sheets Management 🚀**
 
 </div>

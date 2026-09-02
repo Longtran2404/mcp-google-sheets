@@ -21,7 +21,7 @@ const log = (message: string, level: 'info' | 'error' | 'debug' = 'info') => {
 const server = new Server(
   {
     name: 'mcp-google-sheets-server',
-    version: '2.1.0',
+    version: '2.2.1',
   },
   {
     capabilities: {
@@ -166,20 +166,16 @@ async function initializeWithRetry() {
     if (!success) {
       throw new Error('Initialization failed');
     }
-  } catch (error) {
+  } catch {
     retryCount++;
     if (retryCount < maxRetries) {
       log(`Authentication failed, retrying... (${retryCount}/${maxRetries})`, 'info');
       setTimeout(initializeWithRetry, 1000 * retryCount);
     } else {
       log(`Authentication failed after ${maxRetries} attempts`, 'error');
-      throw error;
     }
   }
 }
-
-// Initialize authentication
-initializeWithRetry();
 
 // Basic Operations
 const getDataTool: Tool = {
@@ -1521,12 +1517,14 @@ async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
     
-    log('MCP server connected, initializing Google Sheets API...', 'info');
+    if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+      log('MCP server connected, initializing Google Sheets API...', 'info');
+      void initializeWithRetry();
+    } else {
+      log('MCP server connected without Google credentials; tool discovery remains available.', 'info');
+    }
     
-    // Initialize authentication in background
-    initializeWithRetry();
-    
-    log('🚀 MCP Google Sheets Server v2.1.0 started successfully!', 'info');
+    log('🚀 MCP Google Sheets Server v2.2.1 started successfully!', 'info');
     log('Server ready to handle requests', 'info');
   } catch (error) {
     log(`Failed to start MCP server: ${error}`, 'error');
