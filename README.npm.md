@@ -1,8 +1,17 @@
-# MCP Google Sheets Server v2.1.0
+# MCP Google Sheets Server v2.2.1
 
-Complete MCP Server for Google Sheets - 40+ tools for professional sheet management, advanced charts, and enterprise features!
+Official TaskKit MCP Server for Google Sheets - 37 tools for sheet management, formatting, charts, and automation.
 
-## NEW IN V2.1.0 - COMPLETE SHEET MANAGEMENT & ENHANCED CHARTS
+Official package links:
+
+- TaskKit: https://www.taskkit.vn/ma-nguon-mo
+- Founder: https://www.taskkit.vn/tran-minh-long
+- npm: https://www.npmjs.com/package/mcp-google-sheets-server
+- GitHub: https://github.com/Longtran2404/mcp-google-sheets
+
+Runtime requirement: Node.js 20 or newer.
+
+## COMPLETE SHEET MANAGEMENT & ENHANCED CHARTS
 
 - Complete Sheet Management - Create, rename, hide/show, move, duplicate, delete sheets
 - Advanced Chart Creation - Create charts with data, from tables, update chart data
@@ -10,7 +19,7 @@ Complete MCP Server for Google Sheets - 40+ tools for professional sheet managem
 - Professional Formatting - Colors, fonts, borders, conditional formatting
 - Data Protection - Validation rules, range protection, access control
 - Performance Optimized - Batch operations, efficient API usage
-- Enterprise Ready - 40+ tools for professional Google Sheets management
+- Enterprise Ready - 37 tools for professional Google Sheets management
 
 ## FEATURES
 
@@ -25,6 +34,8 @@ Complete MCP Server for Google Sheets - 40+ tools for professional sheet managem
 
 ## QUICK INSTALLATION
 
+Install Node.js 20 or newer before using the package.
+
 Method 1: Install from npm (Recommended)
 npm install -g mcp-google-sheets-server
 
@@ -37,7 +48,7 @@ npx mcp-google-sheets-server
 ## GOOGLE SERVICE ACCOUNT AUTHENTICATION
 
 Detailed Guide
-See GOOGLE_SERVICE_ACCOUNT_SETUP.md for step-by-step instructions on how to get Google Service Account Key.
+Setup guide: https://github.com/Longtran2404/mcp-google-sheets/blob/master/GOOGLE_SERVICE_ACCOUNT_SETUP.md
 
 Quick Configuration
 {
@@ -52,7 +63,7 @@ Quick Configuration
 }
 }
 
-## COMPLETE TOOL COLLECTION (40+ TOOLS!)
+## COMPLETE TOOL COLLECTION (37 TOOLS)
 
 Basic Operations
 
@@ -180,7 +191,7 @@ Common errors:
 
 ## ADVANTAGES OVER OTHER SOLUTIONS
 
-- 40+ Advanced Tools - Most comprehensive Google Sheets MCP server
+- 37 Advanced Tools - Complete Google Sheets MCP tool collection
 - Complete Sheet Management - Full control over sheets (create, rename, hide, move, delete)
 - Enhanced Chart Creation - Create charts with data, from tables, update dynamically
 - Professional Formatting - Colors, fonts, borders, conditional formatting
@@ -213,4 +224,6 @@ If you encounter issues:
 
 If this project is helpful, please give it a star!
 
-Now with 40+ Tools for Complete Google Sheets Management!
+37 Tools for Complete Google Sheets Management!
+
+Maintained by Trần Minh Long as part of the TaskKit open-source ecosystem.
